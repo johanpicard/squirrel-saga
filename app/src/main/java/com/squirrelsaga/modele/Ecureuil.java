@@ -15,7 +15,8 @@ public class Ecureuil {
         private int noisettesMangees;
 
         public void mange(int nbNoisettes){
-
+            this.noisettesMangees += nbNoisettes;
+            //level up si seuil niveau dépassé
         }
 
 }
