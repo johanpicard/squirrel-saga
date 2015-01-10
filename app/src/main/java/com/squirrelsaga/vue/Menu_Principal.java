@@ -3,7 +3,6 @@ package com.squirrelsaga.vue;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -54,7 +53,6 @@ public class Menu_Principal extends ActionBarActivity {
     }
 
     public void afficherCarte(View view) {
-        Log.d("SS","Touch");
         Intent intent = new Intent(this, Carte.class);
         startActivity(intent);
     }
