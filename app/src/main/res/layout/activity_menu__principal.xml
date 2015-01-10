@@ -29,4 +29,13 @@
         android:layout_marginLeft="355dp"
         android:layout_marginStart="355dp" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Carte"
+        android:id="@+id/button"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:onClick="afficherCarte" />
+
 </RelativeLayout>
