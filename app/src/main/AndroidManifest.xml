@@ -17,6 +17,10 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".Vue_Ecureuil"
+            android:label="Votre écureuil" >
+        </activity>
+        <activity
             android:name=".Carte"
             android:label="@string/title_activity_carte" >
         </activity>

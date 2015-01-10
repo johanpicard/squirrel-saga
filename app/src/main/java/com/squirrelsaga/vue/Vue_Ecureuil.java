@@ -1,35 +1,20 @@
 package com.squirrelsaga.vue;
 
-import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
-
-public class Menu_Principal extends ActionBarActivity {
-
-    Button BtnCommencer;
+/**
+ * Created by user on 06/01/2015.
+ */
+public class Vue_Ecureuil extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu__principal);
-
-        BtnCommencer = (Button)findViewById(R.id.BtnCommencer);
-        BtnCommencer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                BtnCommencer.setText("Ok");
-                Intent intent = new Intent(Menu_Principal.this, Vue_Ecureuil.class);
-                startActivity(intent);
-            }
-        });
+        setContentView(R.layout.activity_vue_ecureuil);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -51,11 +36,5 @@ public class Menu_Principal extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void afficherCarte(View view) {
-        Log.d("SS","Touch");
-        Intent intent = new Intent(this, Carte.class);
-        startActivity(intent);
     }
 }
