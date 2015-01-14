@@ -6,5 +6,7 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_carte">Carte</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_slide_ecureuil">Slide_ecureuil</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

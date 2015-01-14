@@ -22,8 +22,7 @@ public class Menu_Principal extends ActionBarActivity {
         BtnCommencer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BtnCommencer.setText("Ok");
-                Intent intent = new Intent(Menu_Principal.this, Vue_Ecureuil.class);
+                Intent intent = new Intent(Menu_Principal.this, Slide_Ecureuil.class);
                 startActivity(intent);
             }
         });

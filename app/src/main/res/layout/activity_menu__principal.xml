@@ -29,13 +29,4 @@
         android:layout_centerHorizontal="true"
         style="@style/Base.TextAppearance.AppCompat.Body1" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Carte"
-        android:id="@+id/button"
-        android:layout_alignBottom="@+id/imageView"
-        android:layout_centerHorizontal="true"
-        android:onClick="afficherCarte" />
-
 </RelativeLayout>
