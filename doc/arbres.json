@@ -1,0 +1,116 @@
+[
+        {
+            "nom": "L'Araucaria", 
+            "posx": "45.773866", 
+            "posy": "4.856521", 
+            "type": "conifère"
+        }, 
+        {
+            "nom": "Le Cèdre du Liban", 
+            "posx": "45.777702", 
+            "posy": "4.845253", 
+            "type": "conifère"
+        }, 
+        {
+            "nom": "Le Charme", 
+            "posx": "45.784153", 
+            "posy": "4.856175", 
+            "type": ""
+        }, 
+        {
+            "nom": "Le Chêne pédonculé", 
+            "posx": "45.780080", 
+            "posy": "4.853999", 
+            "type": ""
+        },
+        {
+            "nom": "Le Chêne des Pyrénées", 
+            "posx": "45.777007", 
+            "posy": "4.857430", 
+            "type": "chêne"
+        },
+        {
+            "nom": "Le Chicot du Canada", 
+            "posx": "45.773713", 
+            "posy": "4.855845", 
+            "type": ""
+        },
+        {
+            "nom": "Le Cyprès chauve", 
+            "posx": "45.775774", 
+            "posy": "4.854678", 
+            "type": ""
+        },
+        {
+            "nom": "L'Erable de Montpellier", 
+            "posx": "45.780666", 
+            "posy": "4.856438", 
+            "type": ""
+        },
+        {
+            "nom": "L'Erable Sycomore", 
+            "posx": "45.776508", 
+            "posy": "4.847589", 
+            "type": ""
+        },
+        {
+            "nom": "Le Gleditsia", 
+            "posx": "45.777611", 
+            "posy": "4.850740", 
+            "type": ""
+        },
+        {
+            "nom": "Le Gingko", 
+            "posx": "45.779242", 
+            "posy": "4.847372", 
+            "type": ""
+        },
+        {
+            "nom": "Le Hêtre", 
+            "posx": "45.783574", 
+            "posy": "4.854417", 
+            "type": ""
+        },
+        {
+            "nom": "Le Noyer d'Amérique", 
+            "posx": "45.777239", 
+            "posy": "4.848257", 
+            "type": ""
+        },
+        {
+            "nom": "L'oranger des Osages", 
+            "posx": "45.773716", 
+            "posy": "4.856081", 
+            "type": ""
+        },
+        {
+            "nom": "Le Parrotia Persica", 
+            "posx": "45.783181", 
+            "posy": "4.855800", 
+            "type": ""
+        },
+        {
+            "nom": "Le Plaqueminier", 
+            "posx": "45.775686", 
+            "posy": "4.858102", 
+            "type": ""
+        },
+        {
+            "nom": "Le Pin à écorce de Platane", 
+            "posx": "45.774158", 
+            "posy": "4.857296", 
+            "type": ""
+        },
+        {
+            "nom": "Le Sequoia Gigantea", 
+            "posx": "45.781227", 
+            "posy": "4.848895", 
+            "type": ""
+        },
+        {
+            "nom": "Le Tulipier de Virginie", 
+            "posx": "45.777915", 
+            "posy": "4.846491", 
+            "type": ""
+        }
+]
