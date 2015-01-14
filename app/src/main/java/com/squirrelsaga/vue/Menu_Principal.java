@@ -1,6 +1,5 @@
 package com.squirrelsaga.vue;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
@@ -14,6 +13,7 @@ import android.widget.Button;
 import com.squirrelsaga.controleur.Controleur;
 
 
+
 public class Menu_Principal extends ActionBarActivity {
 
     Button BtnCommencer;
@@ -22,7 +22,6 @@ public class Menu_Principal extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Log.i("SSAGA", "Starting...");
         checkFirstLaunchAndSetupApplication();
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu__principal);
