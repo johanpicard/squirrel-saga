@@ -12,12 +12,15 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.squirrelsaga.modele.Quete;
 
 import android.os.Bundle;
+import android.util.Log;
+
+import java.util.List;
 
 
-
-public class Carte  extends FragmentActivity implements OnMapReadyCallback {
+public class Carte extends FragmentActivity implements OnMapReadyCallback {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +29,8 @@ public class Carte  extends FragmentActivity implements OnMapReadyCallback {
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        //test persistance
+
+
     }
 
     @Override
@@ -38,17 +42,22 @@ public class Carte  extends FragmentActivity implements OnMapReadyCallback {
 
         Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(new Criteria(), true));
 
-
-
-        map.addMarker(new MarkerOptions()
-                .position(new LatLng(45.77740, 4.85521))
-                .title("Quête")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.map_treasure))
-                .anchor((float) 0.3, 1))
-                ;
-
-
-        map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(),location.getLongitude())));
+        showQuestsOnMap(map);
+        map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude())));
         map.moveCamera(CameraUpdateFactory.zoomTo(10));
     }
+
+    private void showQuestsOnMap(GoogleMap map) {
+        List<Quete> quetes = Quete.listAll(Quete.class);
+        for (Quete quete : quetes) {
+            map.addMarker(new MarkerOptions()
+                    .position(new LatLng(quete.latitude, quete.longitude))
+                    .title(quete.titre)
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.map_treasure))
+                    .anchor((float) 0.3, 1))
+            ;
+        }
+    }
+
+
 }

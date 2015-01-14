@@ -1,12 +1,17 @@
 package com.squirrelsaga.vue;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
+import com.squirrelsaga.controleur.Controleur;
 
 
 public class Menu_Principal extends ActionBarActivity {
@@ -15,6 +20,10 @@ public class Menu_Principal extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i("SSAGA", "Starting...");
+        checkFirstLaunchAndSetupApplication();
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu__principal);
 
@@ -56,4 +65,29 @@ public class Menu_Principal extends ActionBarActivity {
         Intent intent = new Intent(this, Carte.class);
         startActivity(intent);
     }
+
+
+    public void checkFirstLaunchAndSetupApplication()
+    {
+        Log.i("SSAGA", "Checking for first launch...");
+        SharedPreferences settings = getPreferences(MODE_PRIVATE);
+        boolean firstLaunch = settings.getBoolean("firstLaunch", true);
+        if (firstLaunch) {
+            Log.i("SSAGA", "This is first launch");
+            setupApplication();
+        }
+    }
+
+    private  void setupApplication() {
+
+        Controleur.setupDatabase();
+
+
+        SharedPreferences settings = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean("firstLaunch", false);
+        editor.commit();
+    }
+
+
 }
