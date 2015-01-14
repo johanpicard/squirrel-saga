@@ -25,6 +25,8 @@ public class Carte  extends FragmentActivity implements OnMapReadyCallback {
         MapFragment mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        //test persistance
     }
 
     @Override
