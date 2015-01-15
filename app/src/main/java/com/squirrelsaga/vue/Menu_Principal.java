@@ -30,7 +30,7 @@ public class Menu_Principal extends ActionBarActivity {
         BtnCommencer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Menu_Principal.this, Slide_Ecureuil.class);
+                Intent intent = new Intent(Menu_Principal.this, Slide_ecureuil.class);
                 startActivity(intent);
             }
         });

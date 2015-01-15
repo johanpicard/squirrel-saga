@@ -11,7 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.view.View;
 
 
-public class Slide_Ecureuil extends FragmentActivity {
+public class Slide_ecureuil extends FragmentActivity {
 
     /**
      * The number of pages (wizard steps) to show in this demo.

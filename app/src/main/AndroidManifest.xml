@@ -48,7 +48,7 @@
             android:value="AIzaSyCwTaoKX7zu6UUDD4GdmiWHUwo1OeBMy90" />
 
         <activity
-            android:name=".Slide_Ecureuil"
+            android:name=".Slide_ecureuil"
             android:label="@string/title_activity_slide_ecureuil" >
         </activity>
     </application>
