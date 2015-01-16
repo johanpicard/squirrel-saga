@@ -6,10 +6,11 @@ import java.util.Map;
 
 public class Salle {
 
+        private int[] palliers;
         private String nom;
         private String idImage;
-        private boolean dispo;
-        private Map<String,Integer> prerequis;
-        private ArrayList<Trophee> trophees;
+        private int points;
+        private int pallier;
+        private ArrayList<String> cartes;
 
 }

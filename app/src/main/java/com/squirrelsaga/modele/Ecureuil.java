@@ -8,15 +8,11 @@ public class Ecureuil {
 
         private String nom;
         private String type;
-        private int niveau;
         private Map<String,Integer> competences;
         private ArrayList<Salle> nid;
-        private Metier metier;
-        private int noisettesMangees;
+        private int nbNoisettes;
 
         public void mange(int nbNoisettes){
-            this.noisettesMangees += nbNoisettes;
-            //level up si seuil niveau dépassé
+            this.nbNoisettes += nbNoisettes;
         }
-
 }
