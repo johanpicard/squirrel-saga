@@ -3,6 +3,7 @@ package com.squirrelsaga.controleur;
 import android.util.Log;
 
 import com.squirrelsaga.modele.Arbre;
+import com.squirrelsaga.modele.Ecureuil;
 import com.squirrelsaga.modele.Quete;
 
 /**
@@ -10,19 +11,22 @@ import com.squirrelsaga.modele.Quete;
  */
 public class Controleur {
 
+    private static Quete queteCourante;
+
+    private static Ecureuil ecureuil;
+
     public static void setupDatabase() {
         setupQuests();
         setupTrees();
 
     }
 
-
     private static void setupQuests() {
         Log.i("SSAGA", "Setting up quests");
 
-        Quete quete = new Quete("Trouver la princesse", 45.77740, 4.85521);
+        Quete quete = new Quete("Trouver la princesse", 45.77740, 4.85521,0,0,0);
         quete.save();
-        quete = new Quete("Manger des noisettes", 45.78740, 4.84521);
+        quete = new Quete("Manger des noisettes", 45.78740, 4.84521,0,0,0);
         quete.save();
     }
 
@@ -71,6 +75,18 @@ public class Controleur {
         arbre = new Arbre(1,"Le Tulipier de Virginie", 45.777915, 4.846491, 5,"Conifère");
         arbre.save();
 
+    }
+
+    public static Quete getQueteCourante() {
+        return queteCourante;
+    }
+
+    public static Ecureuil getEcureuil() {
+        return ecureuil;
+    }
+
+    public static void setEcureuil(Ecureuil ecur) {
+        ecureuil = ecur;
     }
 
 
