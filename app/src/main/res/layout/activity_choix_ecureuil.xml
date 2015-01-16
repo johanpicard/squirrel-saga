@@ -1,0 +1,135 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
+    tools:context="com.squirrelsaga.vue.choix_ecureuil">
+
+    <TextView android:text="@string/explication_choix"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:gravity="center_horizontal"
+        android:id="@+id/explication_choix"
+        style="@style/information" />
+
+    <LinearLayout
+        android:id="@+id/buttonOK"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp">
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/BtnValider"
+            android:id="@+id/choixNom"
+            android:inputType="textPersonName|textCapSentences"
+            android:maxLength="15"
+            android:hint="Nom"
+            android:gravity="center"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_button_valider"
+            android:id="@+id/BtnValider"
+            style="@style/btnStyleOrangePetit"/>
+    </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/scroll_choix"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/explication_choix"
+            android:layout_above="@id/buttonOK"
+            android:fadeScrollbars="false"
+            android:gravity="center"
+            android:layout_marginBottom="5dp">
+
+                <RadioGroup
+                    android:id="@+id/radio_group"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="100dp"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:layout_height="wrap_content"
+                        android:drawableRight="@drawable/choix1"
+                        android:layout_width="wrap_content"
+                        android:checked="true"
+                        android:id="@+id/choix1">
+                    </RadioButton>
+
+                    <RadioButton
+                        android:layout_height="wrap_content"
+                        android:drawableRight="@drawable/choix2"
+                        android:layout_width="wrap_content"
+                        android:checked="false"
+                        android:id="@+id/choix2">
+                    </RadioButton>
+
+                    <RadioButton
+                        android:layout_height="wrap_content"
+                        android:drawableRight="@drawable/choix3"
+                        android:layout_width="wrap_content"
+                        android:checked="false"
+                        android:id="@+id/choix3">
+                    </RadioButton>
+
+                    <RadioButton
+                        android:layout_height="wrap_content"
+                        android:drawableRight="@drawable/choix4"
+                        android:layout_width="wrap_content"
+                        android:checked="false"
+                        android:id="@+id/choix4">
+                    </RadioButton>
+
+                    <RadioButton
+                        android:layout_height="wrap_content"
+                        android:drawableRight="@drawable/choix5"
+                        android:layout_width="wrap_content"
+                        android:checked="false"
+                        android:id="@+id/choix5">
+                    </RadioButton>
+
+                    <RadioButton
+                        android:layout_height="wrap_content"
+                        android:drawableRight="@drawable/choix6"
+                        android:layout_width="wrap_content"
+                        android:checked="false"
+                        android:id="@+id/choix6">
+                    </RadioButton>
+
+                    <RadioButton
+                        android:layout_height="wrap_content"
+                        android:drawableRight="@drawable/choix7"
+                        android:layout_width="wrap_content"
+                        android:checked="false"
+                        android:id="@+id/choix7">
+                    </RadioButton>
+
+                    <RadioButton
+                        android:layout_height="wrap_content"
+                        android:drawableRight="@drawable/choix8"
+                        android:layout_width="wrap_content"
+                        android:checked="false"
+                        android:id="@+id/choix8"
+                        android:layout_marginBottom="70dp">
+                    </RadioButton>
+                </RadioGroup>
+        </ScrollView>
+
+
+
+</RelativeLayout>

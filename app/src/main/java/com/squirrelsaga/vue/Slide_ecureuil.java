@@ -57,6 +57,11 @@ public class Slide_ecureuil extends FragmentActivity {
         startActivity(intent);
     }
 
+    public void afficherChoix(View view) {
+        Intent intent = new Intent(this, choix_ecureuil.class);
+        startActivity(intent);
+    }
+
     /**
      * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in
      * sequence.

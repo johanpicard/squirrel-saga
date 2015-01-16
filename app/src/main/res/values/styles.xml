@@ -18,6 +18,20 @@
         <item name="android:background">@drawable/btn_gradient</item>
     </style>
 
+    <style name="btnStyleOrangePetit" parent="@android:style/Widget.Button">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:shadowColor">@color/black</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">0.6</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:padding">@dimen/button_padding</item>
+        <item name="android:background">@drawable/btn_gradient</item>
+    </style>
+
     <style name="textStyleLogo" parent="@android:style/TextAppearance.Large">
         <item name="android:textSize">70sp</item>
         <item name="android:textStyle">bold</item>
@@ -27,6 +41,17 @@
         <item name="android:shadowDy">4</item>
         <item name="android:shadowRadius">1</item>
         <item name="android:lineSpacingMultiplier">0.65</item>
+    </style>
+
+    <style name="information" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/logo_color</item>
+        <item name="android:shadowColor">@color/logo_shadow</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">1</item>
+        <item name="android:lineSpacingMultiplier">0.90</item>
     </style>
 
 </resources>

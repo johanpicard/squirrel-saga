@@ -21,4 +21,18 @@
         android:onClick="afficherCarte"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.29" />
+
+    <Button
+        style="@style/btnStyleOrange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_button_commencer"
+        android:id="@+id/button"
+        android:onClick="afficherChoix"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:singleLine="false"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.29" />
 </LinearLayout>
