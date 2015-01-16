@@ -2,6 +2,7 @@ package com.squirrelsaga.vue;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.squirrelsaga.controleur.Controleur;
 
@@ -17,6 +19,7 @@ import com.squirrelsaga.controleur.Controleur;
 public class Menu_Principal extends ActionBarActivity {
 
     Button BtnCommencer;
+    TextView Logo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +29,10 @@ public class Menu_Principal extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu__principal);
 
+        Typeface font = Typeface.createFromAsset(getAssets(), "GrandHotel-Regular.otf");
+
         BtnCommencer = (Button)findViewById(R.id.BtnCommencer);
+        BtnCommencer.setTypeface(font);
         BtnCommencer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,6 +40,9 @@ public class Menu_Principal extends ActionBarActivity {
                 startActivity(intent);
             }
         });
+
+        Logo = (TextView)findViewById(R.id.Logo);
+        Logo.setTypeface(font);
     }
 
 
