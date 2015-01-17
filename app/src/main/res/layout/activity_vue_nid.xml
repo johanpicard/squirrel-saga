@@ -1,26 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView2"
-        android:src="@drawable/ecureul_2"
-        android:layout_weight="0.29" />
-
-    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Carte"
-        android:id="@+id/btnCarte"
-        android:layout_alignBottom="@+id/imageView"
-        android:layout_centerHorizontal="true"
-        android:onClick="afficherCarte"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.29" />
+        android:scaleType="centerCrop"
+        android:id="@+id/Background_nid"
+        android:src="@drawable/maison" />
+
+
+
+    <LinearLayout
+        android:id="@+id/out"
+        android:weightSum="4"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="match_parent" >
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="5" >
+            <ImageButton
+                android:src="@drawable/bouton_carte"
+                android:id="@+id/BtnCarte"
+                android:layout_width="fill_parent"
+                android:layout_height="0px"
+                android:layout_weight="1"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:onClick="afficherCarte" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/out2"
+        android:weightSum="4"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="match_parent"
+        android:gravity="center">
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:weightSum="2"
+            android:gravity="bottom">
+            <ImageView
+                android:id="@+id/Image_ecureuil"
+                android:layout_width="fill_parent"
+                android:layout_height="0px"
+                android:layout_weight="1"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
 
     <Button
         style="@style/btnStyleOrange"
@@ -32,7 +71,9 @@
         android:layout_marginBottom="20dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:singleLine="false"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.29" />
-</LinearLayout>
+
+
+
+</RelativeLayout>

@@ -68,12 +68,6 @@ public class Menu_Principal extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void afficherCarte(View view) {
-        Intent intent = new Intent(this, Carte.class);
-        startActivity(intent);
-    }
-
-
     public void checkFirstLaunchAndSetupApplication()
     {
         Log.i("SSAGA", "Checking for first launch...");
