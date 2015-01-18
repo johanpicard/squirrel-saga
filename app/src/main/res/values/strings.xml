@@ -2,7 +2,8 @@
 <resources>
 
     <string name="app_name">SquirrelSaga</string>
-    <string name="logo">Squirrel \n Saga</string>
+    <string name="logo1">Squirrel</string>
+    <string name="logo2">Saga</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_carte">Carte</string>

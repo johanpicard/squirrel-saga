@@ -19,7 +19,8 @@ import com.squirrelsaga.controleur.Controleur;
 public class Menu_Principal extends ActionBarActivity {
 
     Button BtnCommencer;
-    TextView Logo;
+    TextView Logo1;
+    TextView Logo2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +42,10 @@ public class Menu_Principal extends ActionBarActivity {
             }
         });
 
-        Logo = (TextView)findViewById(R.id.Logo);
-        Logo.setTypeface(font);
+        Logo1 = (TextView)findViewById(R.id.Logo1);
+        Logo1.setTypeface(font);
+        Logo2 = (TextView)findViewById(R.id.Logo2);
+        Logo2.setTypeface(font);
     }
 
 

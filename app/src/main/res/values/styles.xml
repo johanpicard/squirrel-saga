@@ -40,7 +40,8 @@
         <item name="android:shadowDx">4</item>
         <item name="android:shadowDy">4</item>
         <item name="android:shadowRadius">1</item>
-        <item name="android:lineSpacingMultiplier">0.65</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
     </style>
 
     <style name="information" parent="@android:style/TextAppearance.Medium">
@@ -52,6 +53,15 @@
         <item name="android:shadowDy">1</item>
         <item name="android:shadowRadius">1</item>
         <item name="android:lineSpacingMultiplier">0.90</item>
+    </style>
+
+    <style name="titleStripStyle">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/logo_color</item>
+        <item name="android:background">#3a3a3a</item>
     </style>
 
 </resources>

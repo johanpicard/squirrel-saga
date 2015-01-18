@@ -10,46 +10,44 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
 
+import com.squirrelsaga.squirrelsaga.Vue_Vitesse;
+
+import java.util.List;
+import java.util.Vector;
+
 
 public class Slide_ecureuil extends FragmentActivity {
 
-    /**
-     * The number of pages (wizard steps) to show in this demo.
-     */
-    private static final int NUM_PAGES = 4;
-
-    /**
-     * The pager widget, which handles animation and allows swiping horizontally to access previous
-     * and next wizard steps.
-     */
-    private ViewPager mPager;
-
-    /**
-     * The pager adapter, which provides the pages to the view pager widget.
-     */
     private PagerAdapter mPagerAdapter;
+
+    String[] title = {
+            "Nid",
+            "Force",
+            "Intelligence",
+            "Vitesse"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_slide_ecureuil);
+        super.setContentView(R.layout.activity_slide_ecureuil);
 
-        // Instantiate a ViewPager and a PagerAdapter.
-        mPager = (ViewPager) findViewById(R.id.pager);
-        mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
-        mPager.setAdapter(mPagerAdapter);
-    }
+        // Création de la liste de Fragments que fera défiler le PagerAdapter
+        List fragments = new Vector();
 
-    @Override
-    public void onBackPressed() {
-        if (mPager.getCurrentItem() == 0) {
-            // If the user is currently looking at the first step, allow the system to handle the
-            // Back button. This calls finish() on this activity and pops the back stack.
-            super.onBackPressed();
-        } else {
-            // Otherwise, select the previous step.
-            mPager.setCurrentItem(mPager.getCurrentItem() - 1);
-        }
+        // Ajout des Fragments dans la liste
+        fragments.add(Fragment.instantiate(this, Vue_Nid.class.getName()));
+        fragments.add(Fragment.instantiate(this,Vue_Force.class.getName()));
+        fragments.add(Fragment.instantiate(this,Vue_Intelligence.class.getName()));
+        fragments.add(Fragment.instantiate(this,Vue_Vitesse.class.getName()));
+
+        // Création de l'adapter qui s'occupera de l'affichage de la liste de
+        // Fragments
+        this.mPagerAdapter = new MyPagerAdapter(super.getSupportFragmentManager(), fragments);
+
+        ViewPager pager = (ViewPager) super.findViewById(R.id.viewpager);
+        // Affectation de l'adapter au ViewPager
+        pager.setAdapter(this.mPagerAdapter);
+
     }
 
     public void afficherCarte(View view) {
@@ -66,20 +64,32 @@ public class Slide_ecureuil extends FragmentActivity {
      * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in
      * sequence.
      */
-    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-        public ScreenSlidePagerAdapter(FragmentManager fm) {
+    public class MyPagerAdapter extends FragmentStatePagerAdapter {
+
+        private final List fragments;
+
+        //On fournit à l'adapter la liste des fragments à afficher
+        public MyPagerAdapter(FragmentManager fm, List fragments) {
             super(fm);
+            this.fragments = fragments;
         }
 
         @Override
         public Fragment getItem(int position) {
-            return new Vue_Nid();
+            return (Fragment) fragments.get(position);
         }
 
         @Override
         public int getCount() {
-            return NUM_PAGES;
+            return this.fragments.size();
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return title[position];
         }
     }
+
+
 
 }

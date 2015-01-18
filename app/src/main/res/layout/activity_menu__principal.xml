@@ -3,24 +3,34 @@
     android:layout_height="match_parent"
     tools:context=".Menu_Principal">
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/logo"
-        android:id="@+id/Logo"
-        style="@style/textStyleLogo"
-        android:lines="2" />
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/logo1"
+            android:id="@+id/Logo1"
+            style="@style/textStyleLogo"
+            android:layout_marginBottom="-5dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Logo1"
+            android:layout_centerHorizontal="true"
+            android:text="@string/logo2"
+            android:id="@+id/Logo2"
+            style="@style/textStyleLogo"
+            android:layout_marginBottom="15dp"/>
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="0px"
+        android:layout_weight="3"
+        android:scaleType="centerCrop"
         android:id="@+id/Squirrel"
         android:src="@drawable/squirrelbis"
-        android:layout_below="@+id/Logo"
+        android:layout_below="@+id/Logo2"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

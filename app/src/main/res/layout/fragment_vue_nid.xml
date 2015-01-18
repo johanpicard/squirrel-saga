@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
         android:id="@+id/Background_nid"
-        android:src="@drawable/maison" />
+        android:src="@drawable/nid" />
 
 
 
