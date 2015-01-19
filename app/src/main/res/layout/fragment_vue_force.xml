@@ -11,4 +11,32 @@
         android:id="@+id/Background_force"
         android:src="@drawable/salle_gym"
     />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="5" >
+            <LinearLayout
+                android:id="@+id/out"
+                android:weightSum="3"
+                android:layout_weight="2"
+                android:layout_width="fill_parent"
+                android:orientation="horizontal"
+                android:layout_height="0px" >
+            <ImageView
+                android:src="@drawable/cadenas"
+                android:id="@+id/image1"
+                style="@style/cadenasStyle" />
+            <ImageView
+                android:src="@drawable/cadenas"
+                android:id="@+id/image2"
+                style="@style/cadenasStyle" />
+            <ImageView
+                android:src="@drawable/cadenas"
+                android:id="@+id/image3"
+                style="@style/cadenasStyle" />
+        </LinearLayout>
+    </LinearLayout>
+
 </RelativeLayout>

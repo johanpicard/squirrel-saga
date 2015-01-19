@@ -53,6 +53,7 @@
         <item name="android:shadowDy">1</item>
         <item name="android:shadowRadius">1</item>
         <item name="android:lineSpacingMultiplier">0.90</item>
+        <item name="android:padding">5dp</item>
     </style>
 
     <style name="titleStripStyle">
@@ -62,6 +63,15 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/logo_color</item>
         <item name="android:background">#3a3a3a</item>
+    </style>
+
+    <style name="cadenasStyle">
+        <item name="android:layout_width">0px</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@null</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:padding">15dp</item>
     </style>
 
 </resources>
