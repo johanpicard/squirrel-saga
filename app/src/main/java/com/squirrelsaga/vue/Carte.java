@@ -1,5 +1,14 @@
 package com.squirrelsaga.vue;
 
+import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Paint;
+import android.graphics.PorterDuffColorFilter;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
@@ -9,15 +18,24 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.squirrelsaga.controleur.Controleur;
 import com.squirrelsaga.modele.AbstractQuete;
+import com.squirrelsaga.modele.Ecureuil;
+import com.squirrelsaga.modele.QueteForce;
 import com.squirrelsaga.modele.QueteIntelligence;
+import com.squirrelsaga.modele.QueteVitesse;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -32,10 +50,13 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
 
 
 
+
     }
 
     @Override
     public void onMapReady(GoogleMap map) {
+        final TextView legende= (TextView)findViewById(R.id.legende);
+
         map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         map.setMyLocationEnabled(true);
         map.getUiSettings().setCompassEnabled(true);
@@ -44,20 +65,67 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
         Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(new Criteria(), true));
 
         showQuestsOnMap(map);
-        map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude())));
-        map.moveCamera(CameraUpdateFactory.zoomTo(10));
+        map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(45.7791898,	4.8533830)));
+        map.moveCamera(CameraUpdateFactory.zoomTo(15));
+
+        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                legende.setText(marker.getTitle());
+                return false;
+            }
+        } )
+
+        ;
     }
 
     private void showQuestsOnMap(GoogleMap map) {
-        List<QueteIntelligence> quetes = AbstractQuete.listAll(QueteIntelligence.class);
+        Ecureuil ecureuil = Controleur.getEcureuil();
+        Resources resources = getResources();
+
+        List<AbstractQuete> quetes = new ArrayList<AbstractQuete>();
+
+        quetes.addAll(AbstractQuete.listAll(QueteIntelligence.class));
+        quetes.addAll(AbstractQuete.listAll(QueteForce.class));
+        quetes.addAll(AbstractQuete.listAll(QueteVitesse.class));
         for (AbstractQuete quete : quetes) {
+            Log.i("SSAGA", quete.toString());
+            int iconeId = resources.getIdentifier(quete.getIcone(), "drawable",getPackageName());
+
+            Bitmap icone = BitmapFactory.decodeResource(resources, iconeId);
+            if (quete.getStatut(ecureuil)== AbstractQuete.Statut.COMPETENCES_INSUFFISANTES){
+                icone=convertToGrayscale(icone);
+            }
+
             map.addMarker(new MarkerOptions()
                     .position(new LatLng(quete.latitude, quete.longitude))
-                    .title(quete.getMarker() + " - " +quete.titre)
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.map_treasure))
-                    .anchor((float) 0.3, 1))
+                    .title(quete.getStatut(ecureuil) + " - " + quete.titre)
+                    .snippet(quete.getTexte())
+                    .icon(BitmapDescriptorFactory.fromBitmap(icone)))
             ;
         }
+    }
+
+    private Bitmap convertToGrayscale(Bitmap icone){
+
+        ColorMatrix matrix = new ColorMatrix();
+        matrix.setSaturation(0);
+
+        Canvas c = new Canvas();
+        Paint p = new Paint();
+        ColorMatrix cm = new ColorMatrix();
+
+        cm.setSaturation(0);
+        ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
+        p.setColorFilter(filter);
+
+        Bitmap iconeNB = Bitmap.createBitmap(icone.getWidth(), icone.getHeight(), icone.getConfig());
+        Canvas canvas = new Canvas(iconeNB);
+
+        canvas.drawBitmap(icone, 0f, 0f, p);
+
+        return iconeNB;
     }
 
 

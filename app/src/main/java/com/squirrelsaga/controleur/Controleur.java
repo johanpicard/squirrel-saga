@@ -5,7 +5,9 @@ import android.util.Log;
 import com.squirrelsaga.modele.AbstractQuete;
 import com.squirrelsaga.modele.Arbre;
 import com.squirrelsaga.modele.Ecureuil;
+import com.squirrelsaga.modele.QueteForce;
 import com.squirrelsaga.modele.QueteIntelligence;
+import com.squirrelsaga.modele.QueteVitesse;
 
 /**
  * Created by Johan on 04/01/2015.
@@ -24,11 +26,15 @@ public class Controleur {
 
     private static void setupQuests() {
         Log.i("SSAGA", "Setting up quests");
-
-        AbstractQuete quete = new QueteIntelligence("Trouver la princesse", 45.77740, 4.85521,0,0,0,"Mégaquest");
+        AbstractQuete quete = new QueteForce("Trouver la princesse", 0,0,0,"Elle est là !",45.7767953, 4.8482761);
         quete.save();
-        quete = new QueteIntelligence("Manger des noisettes", 45.78740, 4.84521,0,0,0,null);
+        Log.i("SSAGA", quete.toString());
+        quete = new QueteVitesse("Manger des noisettes",1,0,0,"Miam", 45.7813447, 4.8513660);
         quete.save();
+        Log.i("SSAGA", quete.toString());
+        quete = new QueteIntelligence("Résoudre l'énigme du hibou",1,0,0,"Trop cool !", 45.7760769,	4.8562584);
+        quete.save();
+        Log.i("SSAGA", quete.toString());
     }
 
     /**
@@ -83,6 +89,9 @@ public class Controleur {
     }
 
     public static Ecureuil getEcureuil() {
+        if (null==ecureuil){
+            ecureuil = new Ecureuil("Bob","");
+        }
         return ecureuil;
     }
 

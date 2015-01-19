@@ -9,50 +9,47 @@ public class Ecureuil {
 
     private String nom;
     private String cheminImage;
-    private Map<String,Integer> competences;
-    private int nbNoisettes;
-
+    private int nbNoisettes = 0;
+    private int intelligence = 0;
+    private int vitesse = 0;
+    private int force = 0;
 
     public Ecureuil(String nom, String cheminImage) {
         this.nom = nom;
         this.cheminImage = cheminImage;
-        competences = new HashMap<String,Integer>();
-        competences.put("Force", 0);
-        competences.put("Intelligence",0);
-        competences.put("Agilite",0);
     }
 
     public void mange(int nbNoisettes){
         this.nbNoisettes += nbNoisettes;
     }
 
-    public Map<String, Integer> getCompetences() {
-        return competences;
+    public int getIntelligence() {
+        return intelligence;
+    }
+
+    public int getVitesse() {
+        return vitesse;
     }
 
     public int getForce() {
-        return competences.get("Force");
-    }
-
-    public int getIntelligence() {
-        return competences.get("Intelligence");
-    }
-
-    public int getAgilite() {
-        return competences.get("Agilite");
+        return force;
     }
 
     public int forceLevelUp() {
-        return competences.put("Force", competences.get("Force") + 1);
+        force = force++;
+        return force;
     }
 
     public int intelligenceLevelUp() {
-        return competences.put("Intelligence", competences.get("Intelligence") + 1);
+        intelligence = intelligence++;
+        return intelligence;
     }
 
-    public int agiliteLevelUp() {
-        return competences.put("Agilite", competences.get("Agilite") + 1);
+    public int vitesseLevelUp() {
+        vitesse = vitesse++;
+        return vitesse;
     }
+
 
     public int getNbNoisettes() {
         return nbNoisettes;
