@@ -13,8 +13,7 @@ public class QueteIntelligence extends AbstractQuete {
 
     @Override
     public String getIconeStandard() {
-        //TODO : Change this
-        return "map_treasure";
+        return "icon_brain";
     }
 
     public QueteIntelligence() {

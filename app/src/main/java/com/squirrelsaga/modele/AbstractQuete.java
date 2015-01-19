@@ -82,6 +82,38 @@ public abstract class AbstractQuete extends SugarRecord<AbstractQuete> {
 
     public abstract String getIconeStandard();
 
+    public String getTitre() {
+        return titre;
+    }
+
+    public String getTexte() {
+        return texte;
+    }
+
+    public AbstractQuete getPrerequis() {
+        return prerequis;
+    }
+
+    public int getIntelligenceRequise() {
+        return intelligenceRequise;
+    }
+
+    public int getVitesseRequise() {
+        return vitesseRequise;
+    }
+
+    public int getForceRequise() {
+        return forceRequise;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
     @Override
     public String toString() {
         return "AbstractQuete{" +
