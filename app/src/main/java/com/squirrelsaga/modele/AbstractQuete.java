@@ -11,10 +11,10 @@ import java.util.Map;
 /**
  * Created by lbillon on 1/14/2015.
  */
-public class Quete extends SugarRecord<Quete> {
+public abstract class AbstractQuete extends SugarRecord<AbstractQuete> {
     public String titre;
 
-    private Quete prerequis;
+    private AbstractQuete prerequis;
     private Map<String,Integer> competencesRequises;
     private boolean termine;
     private String texte;
@@ -22,8 +22,9 @@ public class Quete extends SugarRecord<Quete> {
 
     public double latitude;
     public double longitude;
+    private String customMarker;
 
-    public Quete(){
+    public AbstractQuete(){
     }
 
     public boolean estDispo() {
@@ -38,15 +39,27 @@ public class Quete extends SugarRecord<Quete> {
         return !termine && competencesOK && prerequis.estTermine();
     }
 
-    public Quete(String titre, double latitude, double longitude, int forceRequise, int agiliteRequise, int intelligenceRequise ){
+    public AbstractQuete(String titre, double latitude, double longitude, int forceRequise, int agiliteRequise, int intelligenceRequise, String customMarker){
         this.titre = titre;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.customMarker = customMarker;
         competencesRequises = new HashMap<String,Integer>();
         competencesRequises.put("Force", forceRequise);
         competencesRequises.put("Intelligence",agiliteRequise);
         competencesRequises.put("Agilite",intelligenceRequise);
+
     }
+
+    public String getMarker(){
+        if(this.customMarker == null){
+            return getTypeMarker();
+        }else{
+            return customMarker;
+        }
+    }
+
+    public abstract String getTypeMarker();
 
     public boolean estTermine() {
         return termine;

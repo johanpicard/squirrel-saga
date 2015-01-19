@@ -12,7 +12,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.squirrelsaga.modele.Quete;
+import com.squirrelsaga.modele.AbstractQuete;
+import com.squirrelsaga.modele.QueteIntelligence;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -48,11 +49,11 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
     }
 
     private void showQuestsOnMap(GoogleMap map) {
-        List<Quete> quetes = Quete.listAll(Quete.class);
-        for (Quete quete : quetes) {
+        List<QueteIntelligence> quetes = AbstractQuete.listAll(QueteIntelligence.class);
+        for (AbstractQuete quete : quetes) {
             map.addMarker(new MarkerOptions()
                     .position(new LatLng(quete.latitude, quete.longitude))
-                    .title(quete.titre)
+                    .title(quete.getMarker() + " - " +quete.titre)
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.map_treasure))
                     .anchor((float) 0.3, 1))
             ;

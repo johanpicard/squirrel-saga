@@ -2,16 +2,17 @@ package com.squirrelsaga.controleur;
 
 import android.util.Log;
 
+import com.squirrelsaga.modele.AbstractQuete;
 import com.squirrelsaga.modele.Arbre;
 import com.squirrelsaga.modele.Ecureuil;
-import com.squirrelsaga.modele.Quete;
+import com.squirrelsaga.modele.QueteIntelligence;
 
 /**
  * Created by Johan on 04/01/2015.
  */
 public class Controleur {
 
-    private static Quete queteCourante;
+    private static AbstractQuete queteCourante;
 
     private static Ecureuil ecureuil;
 
@@ -24,9 +25,9 @@ public class Controleur {
     private static void setupQuests() {
         Log.i("SSAGA", "Setting up quests");
 
-        Quete quete = new Quete("Trouver la princesse", 45.77740, 4.85521,0,0,0);
+        AbstractQuete quete = new QueteIntelligence("Trouver la princesse", 45.77740, 4.85521,0,0,0,"Mégaquest");
         quete.save();
-        quete = new Quete("Manger des noisettes", 45.78740, 4.84521,0,0,0);
+        quete = new QueteIntelligence("Manger des noisettes", 45.78740, 4.84521,0,0,0,null);
         quete.save();
     }
 
@@ -77,7 +78,7 @@ public class Controleur {
 
     }
 
-    public static Quete getQueteCourante() {
+    public static AbstractQuete getQueteCourante() {
         return queteCourante;
     }
 
