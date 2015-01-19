@@ -24,11 +24,12 @@ public class Controleur {
 
     private static void setupQuests() {
         Log.i("SSAGA", "Setting up quests");
-
-        AbstractQuete quete = new QueteIntelligence("Trouver la princesse", 45.77740, 4.85521,0,0,0,"Mégaquest");
+        AbstractQuete quete = new QueteIntelligence("Trouver la princesse", 0,0,0,"Elle est là !",45.77740, 4.85521);
         quete.save();
-        quete = new QueteIntelligence("Manger des noisettes", 45.78740, 4.84521,0,0,0,null);
+        Log.i("SSAGA", quete.toString());
+        quete = new QueteIntelligence("Manger des noisettes",1,0,0,"Miam", 45.78740, 4.84521);
         quete.save();
+        Log.i("SSAGA", quete.toString());
     }
 
     /**
@@ -83,6 +84,9 @@ public class Controleur {
     }
 
     public static Ecureuil getEcureuil() {
+        if (null==ecureuil){
+            ecureuil = new Ecureuil("Bob","");
+        }
         return ecureuil;
     }
 

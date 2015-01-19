@@ -1,5 +1,6 @@
 package com.squirrelsaga.vue;
 
+import android.content.res.Resources;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
@@ -12,7 +13,9 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.squirrelsaga.controleur.Controleur;
 import com.squirrelsaga.modele.AbstractQuete;
+import com.squirrelsaga.modele.Ecureuil;
 import com.squirrelsaga.modele.QueteIntelligence;
 
 import android.os.Bundle;
@@ -49,12 +52,18 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
     }
 
     private void showQuestsOnMap(GoogleMap map) {
+        Ecureuil ecureuil = Controleur.getEcureuil();
+        Resources resources = getResources();
+
         List<QueteIntelligence> quetes = AbstractQuete.listAll(QueteIntelligence.class);
         for (AbstractQuete quete : quetes) {
+            Log.i("SSAGA", quete.toString());
+            int iconeId = resources.getIdentifier(quete.getIcone(), "drawable",getPackageName());
+
             map.addMarker(new MarkerOptions()
                     .position(new LatLng(quete.latitude, quete.longitude))
-                    .title(quete.getMarker() + " - " +quete.titre)
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.map_treasure))
+                    .title(quete.getStatut(ecureuil)+" - "+quete.titre)
+                    .icon(BitmapDescriptorFactory.fromResource(iconeId))
                     .anchor((float) 0.3, 1))
             ;
         }

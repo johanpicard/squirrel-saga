@@ -1,5 +1,7 @@
 package com.squirrelsaga.modele;
 
+import android.content.Context;
+
 import com.orm.SugarRecord;
 import com.squirrelsaga.controleur.Controleur;
 
@@ -14,55 +16,81 @@ import java.util.Map;
 public abstract class AbstractQuete extends SugarRecord<AbstractQuete> {
     public String titre;
 
-    private AbstractQuete prerequis;
-    private Map<String,Integer> competencesRequises;
-    private boolean termine;
-    private String texte;
+    public final class Statut {
+        public static final String REUSSIE = "reussie";
+        public static final String DISPONIBLE = "disponible";
+        public static final String PREREQUIS_INSATISFAIT= "prerequis insatisfait";
+        public static final String COMPETENCES_INSUFFISANTES= "competences insuffisantes";
+    }
 
+    private AbstractQuete prerequis;
+
+    public int intelligenceRequise = 0;
+    public int vitesseRequise = 0;
+    public int forceRequise = 0;
+
+    private boolean reussie= false;
+    public String texte;
 
     public double latitude;
     public double longitude;
-    private String customMarker;
+    private String icone;
 
     public AbstractQuete(){
     }
 
-    public boolean estDispo() {
-        boolean competencesOK = true;
-        Map<String,Integer> competences = Controleur.getEcureuil().getCompetences();
-
-        for (Map.Entry<String, Integer> entry : competencesRequises.entrySet()) {
-           if (competences.get(entry.getKey())< entry.getValue()) {
-               competencesOK = false;
-           }
-        }
-        return !termine && competencesOK && prerequis.estTermine();
-    }
-
-    public AbstractQuete(String titre, double latitude, double longitude, int forceRequise, int agiliteRequise, int intelligenceRequise, String customMarker){
+    protected AbstractQuete(String titre, int intelligenceRequise, int vitesseRequise, int forceRequise, String texte, double latitude, double longitude) {
         this.titre = titre;
+        this.intelligenceRequise = intelligenceRequise;
+        this.vitesseRequise = vitesseRequise;
+        this.forceRequise = forceRequise;
+        this.texte = texte;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.customMarker = customMarker;
-        competencesRequises = new HashMap<String,Integer>();
-        competencesRequises.put("Force", forceRequise);
-        competencesRequises.put("Intelligence",agiliteRequise);
-        competencesRequises.put("Agilite",intelligenceRequise);
-
     }
 
-    public String getMarker(){
-        if(this.customMarker == null){
-            return getTypeMarker();
+    public String getStatut(Ecureuil ecureuil){
+        if(reussie){
+            return Statut.REUSSIE;
+        }
+
+        if(null !=prerequis) {
+            if (!(prerequis.getStatut(ecureuil) == Statut.REUSSIE)) {
+                return Statut.PREREQUIS_INSATISFAIT;
+            }
+            ;
+        }
+        if(!competencesSuffisantes(ecureuil)){
+            return Statut.COMPETENCES_INSUFFISANTES;
+        }
+
+        return Statut.DISPONIBLE;
+    }
+
+    private boolean competencesSuffisantes(Ecureuil ecureuil) {
+        boolean competencesOK = (ecureuil.getIntelligence() >= intelligenceRequise) && (ecureuil.getVitesse() >= vitesseRequise) && (ecureuil.getForce() >= forceRequise);
+        return competencesOK;
+    }
+
+    public String getIcone(){
+        if(this.icone == null){
+            return getIconeStandard();
         }else{
-            return customMarker;
+            return icone;
         }
     }
 
-    public abstract String getTypeMarker();
+    public abstract String getIconeStandard();
 
-    public boolean estTermine() {
-        return termine;
+    @Override
+    public String toString() {
+        return "AbstractQuete{" +
+                "titre='" + titre + '\'' +
+                ", reussie=" + reussie +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", icone='" + icone + '\'' +
+                '}';
     }
 }
 

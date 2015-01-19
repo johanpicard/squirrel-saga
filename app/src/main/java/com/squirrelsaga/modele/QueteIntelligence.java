@@ -1,17 +1,20 @@
 package com.squirrelsaga.modele;
 
+import java.util.Map;
+
 /**
  * Created by lbillon on 1/19/15.
  */
 
 public class QueteIntelligence extends AbstractQuete {
-    public QueteIntelligence(String titre, double latitude, double longitude, int forceRequise, int agiliteRequise, int intelligenceRequise, String customMarker) {
-        super(titre, latitude, longitude, forceRequise, agiliteRequise, intelligenceRequise, customMarker);
+    public QueteIntelligence(String titre, int intelligenceRequise, int vitesseRequise, int forceRequise, String texte, double latitude, double longitude) {
+        super(titre, intelligenceRequise, vitesseRequise, forceRequise, texte, latitude, longitude);
     }
 
     @Override
-    public String getTypeMarker() {
-        return "intelligence";
+    public String getIconeStandard() {
+        //TODO : Change this
+        return "map_treasure";
     }
 
     public QueteIntelligence() {
