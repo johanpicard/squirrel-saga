@@ -36,6 +36,26 @@
                 android:id="@+id/image3"
                 style="@style/cadenasStyle" />
         </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/useless"
+            android:layout_weight="2"
+            android:layout_width="fill_parent"
+            android:layout_height="0px" />
+        <RelativeLayout
+            android:id="@+id/container"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="fill_parent"
+            android:layout_height="0px" >
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/progressBarHorizontal"
+                android:max="100"/>
+        </RelativeLayout>
     </LinearLayout>
+
 
 </FrameLayout>

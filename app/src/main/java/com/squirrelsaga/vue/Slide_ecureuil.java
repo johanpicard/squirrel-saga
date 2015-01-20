@@ -10,8 +10,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
 
-import com.squirrelsaga.squirrelsaga.Vue_Vitesse;
-
 import java.util.List;
 import java.util.Vector;
 
