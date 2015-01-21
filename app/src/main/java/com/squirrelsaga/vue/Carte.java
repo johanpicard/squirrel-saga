@@ -44,7 +44,6 @@ import java.util.Map;
 
 public class Carte extends FragmentActivity implements OnMapReadyCallback {
     public final static String QUETE_ID = "com.squirrelsaga.QUETE_ID";
-
     //TODO : changer pour la release
     public final static float MAX_DISTANCE_BETWEEN_QUEST_AND_PLAYER = 5000;
 
@@ -61,10 +60,9 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
         MapFragment mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
         button_go = (Button) findViewById(R.id.map_button_go);
 
-        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(new Criteria(), true));
 
 
     }
@@ -72,12 +70,29 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap map) {
 
-
         map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         map.setMyLocationEnabled(true);
         map.getUiSettings().setCompassEnabled(true);
         map.getUiSettings().setMapToolbarEnabled(false);
 
+        setupCustomInfoWindows(map);
+
+        showQuestsOnMap(map);
+        map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(45.7791898, 4.8533830)));
+        map.moveCamera(CameraUpdateFactory.zoomTo(15));
+
+        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+
+                selectQuete(markersQuetes.get(marker.getId()));
+                return false;
+            }
+        })        ;
+    }
+
+    private void setupCustomInfoWindows(GoogleMap map) {
         map.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
             @Override
             public View getInfoWindow(Marker marker) {
@@ -93,29 +108,9 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
                 ((TextView) v.findViewById(R.id.infobulle_quete_text_texte)).setText(quete.getTexte());
                 String texteCompetences = "Intelligence " + ecureuil.getIntelligence() + " / " + quete.getIntelligenceRequise() + " \nForce " + ecureuil.getForce() + " / " + quete.getForceRequise() + " \nVitesse " + ecureuil.getVitesse() + " / " + quete.getVitesseRequise() + " \n";
                 ((TextView) v.findViewById(R.id.infobulle_quete_text_competences)).setText(texteCompetences);
-
-
-                Log.i("SSAGA", quete.toString());
-
                 return v;
             }
         });
-
-        showQuestsOnMap(map);
-        map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(45.7791898, 4.8533830)));
-        map.moveCamera(CameraUpdateFactory.zoomTo(15));
-
-        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-
-            @Override
-            public boolean onMarkerClick(Marker marker) {
-
-                selectQuete(markersQuetes.get(marker.getId()));
-                return false;
-            }
-        })
-
-        ;
     }
 
     private void showQuestsOnMap(GoogleMap map) {
