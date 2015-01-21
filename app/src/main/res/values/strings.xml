@@ -9,11 +9,11 @@
     <string name="title_activity_carte">Carte</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_slide_ecureuil">Slide_ecureuil</string>
-        <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_choix_ecureuil">choix_ecureuil</string>
-
     <string name="explication_choix">Commence par choisir ton écureuil, et donne lui un nom !</string>
     <string name="text_button_commencer">Commencer</string>
     <string name="text_button_valider">OK !</string>
+    <string name="title_activity_quete__intelligence">Quete_Intelligence</string>
 
 </resources>

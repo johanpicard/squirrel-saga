@@ -1,6 +1,7 @@
 package com.squirrelsaga.modele;
 
 import android.content.Context;
+import android.location.Location;
 
 import com.orm.SugarRecord;
 import com.squirrelsaga.controleur.Controleur;
@@ -36,10 +37,21 @@ public abstract class AbstractQuete extends SugarRecord<AbstractQuete> {
     public double longitude;
     private String icone;
 
+    public int recompense;
+    public int noisette;
+
+    public int getRecompense() {
+        return recompense;
+    }
+
+    public int getNoisette() {
+        return noisette;
+    }
+
     public AbstractQuete(){
     }
 
-    protected AbstractQuete(String titre, int intelligenceRequise, int vitesseRequise, int forceRequise, String texte, double latitude, double longitude) {
+    protected AbstractQuete(String titre, int intelligenceRequise, int vitesseRequise, int forceRequise, String texte, double latitude, double longitude, int noisette, int recompense) {
         this.titre = titre;
         this.intelligenceRequise = intelligenceRequise;
         this.vitesseRequise = vitesseRequise;
@@ -47,6 +59,12 @@ public abstract class AbstractQuete extends SugarRecord<AbstractQuete> {
         this.texte = texte;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.recompense = recompense;
+        this.noisette = noisette;
+    }
+
+    public void setReussie(){
+        this.reussie = true;
     }
 
     public String getStatut(Ecureuil ecureuil){
@@ -80,6 +98,13 @@ public abstract class AbstractQuete extends SugarRecord<AbstractQuete> {
         }
     }
 
+    public Location getLocation(){
+        Location location = new Location(titre);
+        location.setLatitude(latitude);
+        location.setLongitude(longitude);
+        return  location;
+    }
+
     public abstract String getIconeStandard();
 
     public String getTitre() {
@@ -92,6 +117,10 @@ public abstract class AbstractQuete extends SugarRecord<AbstractQuete> {
 
     public AbstractQuete getPrerequis() {
         return prerequis;
+    }
+
+    public void setPrerequis(AbstractQuete prerequis) {
+        this.prerequis = prerequis;
     }
 
     public int getIntelligenceRequise() {
