@@ -19,6 +19,18 @@ public class Ecureuil {
         this.cheminImage = cheminImage;
     }
 
+    public void setIntelligence(int intelligence) {
+        this.intelligence = intelligence;
+    }
+
+    public void setVitesse(int vitesse) {
+        this.vitesse = vitesse;
+    }
+
+    public void setForce(int force) {
+        this.force = force;
+    }
+
     public void mange(int nbNoisettes){
         this.nbNoisettes += nbNoisettes;
     }
@@ -40,8 +52,8 @@ public class Ecureuil {
         return force;
     }
 
-    public int intelligenceLevelUp() {
-        intelligence = intelligence++;
+    public int intelligenceLevelUp(int recompense) {
+        intelligence = intelligence+recompense;
         return intelligence;
     }
 
