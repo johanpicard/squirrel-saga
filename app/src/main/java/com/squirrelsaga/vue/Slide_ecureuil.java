@@ -1,6 +1,9 @@
 package com.squirrelsaga.vue;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -8,7 +11,12 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 
 import java.util.List;
 import java.util.Vector;
@@ -56,6 +64,51 @@ public class Slide_ecureuil extends FragmentActivity {
     public void afficherChoix(View view) {
         Intent intent = new Intent(this, choix_ecureuil.class);
         startActivity(intent);
+    }
+
+    public void showPopup(View anchorView) {
+        int popupWidth = 200;
+        int popupHeight = 150;
+
+        LayoutInflater layoutInflater = (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View layout = layoutInflater.inflate(R.layout.popup_interrogation, null);
+
+        PopupWindow popupWindow = new PopupWindow(layout,
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        // Initialize more widgets from `popup_layout.xml`
+        // Creating the PopupWindow
+        final PopupWindow popup = new PopupWindow();
+        popup.setContentView(layout);
+        popup.setWidth(popupWidth);
+        popup.setHeight(popupHeight);
+        popup.setFocusable(true);
+ /*       // Some offset to align the popup a bit to the right, and a bit down, relative to button's position.
+        int OFFSET_X = 30;
+        int OFFSET_Y = 30;*/
+
+        // Clear the default translucent background
+        popup.setBackgroundDrawable(new BitmapDrawable());
+        // If the PopupWindow should be focusable
+        popupWindow.setFocusable(true);
+        // Getting a reference to Close button, and close the popup when clicked.
+        Button BtnClose = (Button) layout.findViewById(R.id.BtnClose);
+        Typeface font = Typeface.createFromAsset(getAssets(), "GrandHotel-Regular.otf");
+        BtnClose.setTypeface(font);
+        BtnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popup.dismiss();
+            }
+        });
+
+        int location[] = new int[2];
+        // Get the View's(the one that was clicked in the Fragment) location
+        anchorView.getLocationOnScreen(location);
+        // Using location, the PopupWindow will be displayed right under anchorView
+        popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY,
+                location[0], location[1] + anchorView.getHeight());
+
     }
 
     /**
