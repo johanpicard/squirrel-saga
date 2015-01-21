@@ -61,6 +61,11 @@
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyCwTaoKX7zu6UUDD4GdmiWHUwo1OeBMy90" />
+
+        <activity
+            android:name=".Quete"
+            android:label="Quete" >
+        </activity>
     </application>
 
 </manifest>

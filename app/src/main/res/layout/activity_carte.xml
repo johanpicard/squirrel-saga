@@ -45,7 +45,9 @@
             android:layout_alignParentTop="false"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="false"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:onClick="startQuest"
+            android:nestedScrollingEnabled="true" />
     </RelativeLayout>
 
 </RelativeLayout>

@@ -8,7 +8,6 @@ import android.graphics.Canvas;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
-import android.graphics.PorterDuffColorFilter;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
@@ -18,7 +17,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -36,10 +34,18 @@ import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class Carte extends FragmentActivity implements OnMapReadyCallback {
+    public final static String QUETE_ID= "com.squirrelsaga.QUETE_ID";
+
+    private AbstractQuete queteSelected = null;
+    Map<String, AbstractQuete> markersQuetes = new HashMap<String, AbstractQuete>();
+    private TextView legende;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +61,7 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(GoogleMap map) {
-        final TextView legende= (TextView)findViewById(R.id.legende);
+        legende= (TextView)findViewById(R.id.legende);
 
         map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         map.setMyLocationEnabled(true);
@@ -73,6 +79,7 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
             @Override
             public boolean onMarkerClick(Marker marker) {
                 legende.setText(marker.getTitle());
+                selectQuete(markersQuetes.get(marker.getId()));
                 return false;
             }
         } )
@@ -98,12 +105,14 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
                 icone=convertToGrayscale(icone);
             }
 
-            map.addMarker(new MarkerOptions()
+            Marker marker = map.addMarker(new MarkerOptions()
                     .position(new LatLng(quete.latitude, quete.longitude))
                     .title(quete.getStatut(ecureuil) + " - " + quete.titre)
                     .snippet(quete.getTexte())
                     .icon(BitmapDescriptorFactory.fromBitmap(icone)))
             ;
+            markersQuetes.put(marker.getId(),quete);
+
         }
     }
 
@@ -126,6 +135,18 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
         canvas.drawBitmap(icone, 0f, 0f, p);
 
         return iconeNB;
+    }
+
+    private void selectQuete(AbstractQuete quete){
+        queteSelected = quete;
+        legende.setText(quete.getTitre());
+
+    }
+
+    public void startQuest(View view){
+        Intent intent = new Intent(this,Quete.class);
+        intent.putExtra(QUETE_ID, queteSelected.getId());
+        startActivity(intent);
     }
 
 
