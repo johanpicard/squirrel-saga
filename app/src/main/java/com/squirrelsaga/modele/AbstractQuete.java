@@ -1,6 +1,7 @@
 package com.squirrelsaga.modele;
 
 import android.content.Context;
+import android.location.Location;
 
 import com.orm.SugarRecord;
 import com.squirrelsaga.controleur.Controleur;
@@ -95,6 +96,13 @@ public abstract class AbstractQuete extends SugarRecord<AbstractQuete> {
         }else{
             return icone;
         }
+    }
+
+    public Location getLocation(){
+        Location location = new Location(titre);
+        location.setLatitude(latitude);
+        location.setLongitude(longitude);
+        return  location;
     }
 
     public abstract String getIconeStandard();
