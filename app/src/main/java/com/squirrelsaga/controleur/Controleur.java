@@ -92,6 +92,7 @@ public class Controleur {
     public static Ecureuil getEcureuil() {
         if (null==ecureuil){
             ecureuil = new Ecureuil("Bob","");
+            ecureuil.intelligenceLevelUp(3);
         }
         return ecureuil;
     }
