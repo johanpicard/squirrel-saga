@@ -63,7 +63,7 @@
             android:value="AIzaSyCwTaoKX7zu6UUDD4GdmiWHUwo1OeBMy90" />
 
         <activity
-            android:name=".Quete"
+            android:name=".VueQueteIntelligence"
             android:label="Quete" >
         </activity>
     </application>

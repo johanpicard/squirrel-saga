@@ -144,7 +144,7 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
     }
 
     public void startQuest(View view){
-        Intent intent = new Intent(this,Quete.class);
+        Intent intent = new Intent(this,VueQueteIntelligence.class);
         intent.putExtra(QUETE_ID, queteSelected.getId());
         startActivity(intent);
     }

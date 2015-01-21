@@ -1,27 +1,25 @@
 package com.squirrelsaga.vue;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.squirrelsaga.vue.R;
+import com.squirrelsaga.modele.AbstractQuete;
 
-public class Quete extends ActionBarActivity {
+public abstract class AbstractQueteActivity extends ActionBarActivity {
 
+
+    protected long queteId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quete__intelligence);
 
         Intent intent = getIntent();
-
-        long queteId  = intent.getLongExtra(Carte.QUETE_ID, 0);
-
-        Log.i("SSAGA", "Start quest # "+queteId);
+        queteId  = intent.getLongExtra(Carte.QUETE_ID, 0);
 
     }
 
@@ -47,4 +45,5 @@ public class Quete extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
