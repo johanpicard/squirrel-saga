@@ -24,14 +24,19 @@
         android:text="Ultime Bafouille"
         android:id="@+id/button"
         android:onClick="verifierReponse"
-        android:layout_marginBottom="198dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignLeft="@+id/question"
+        android:layout_alignStart="@+id/question"
+        android:layout_marginBottom="42dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editText"
-        android:layout_centerVertical="true" />
+        android:editable="true"
+        android:layout_above="@+id/button"
+        android:layout_alignLeft="@+id/button"
+        android:layout_alignStart="@+id/button"
+        android:layout_marginBottom="57dp" />
 
 </RelativeLayout>

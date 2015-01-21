@@ -1,6 +1,8 @@
 package com.squirrelsaga.vue;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -46,13 +48,23 @@ public class VueQueteIntelligence extends AbstractQueteActivity {
     public void verifierReponse(View v){
         QueteIntelligence quete = getActiveQuest();
         String reponse = quete.getReponse();
-
         EditText reponseText = (EditText)findViewById(R.id.editText);
-        if (reponse.equals(reponseText.getText().toString()))
+
+        if (reponse.toUpperCase().equals(reponseText.getText().toString().toUpperCase()))
         {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this.getApplicationContext());
+            //On informe l'utilisateur de la réussite
+            AlertDialog.Builder builder = new AlertDialog.Builder(VueQueteIntelligence.this);
             builder.setMessage("Vous avez réussi cette quête")
-                    .setTitle("Bravo");
+                    .setTitle("Bravo")
+                    .setPositiveButton("Retour à la carte", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // go to a new activity of the app
+                            Intent retourCarte = new Intent(getApplicationContext(),
+                                    Carte.class);
+                            startActivity(retourCarte);
+                        }
+                    });
+
             AlertDialog dialog = builder.create();
             dialog.show();
 
@@ -63,7 +75,20 @@ public class VueQueteIntelligence extends AbstractQueteActivity {
             ecureuil.intelligenceLevelUp(quete.getRecompense());
 
             //Ecureuil set Intelligence
+        }else{
+            //On informe l'utilisateur de l'échec, il peut réasser
+            AlertDialog.Builder builder = new AlertDialog.Builder(VueQueteIntelligence.this);
+            builder.setMessage("Vous n'avez pas saisi la bonne réponse, vérifiez l'ortographe, ou proposez une autre réponse. ")
+                    .setTitle("Perdu").
+                    setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // cancel the alert box and put a Toast to the user
+                            dialog.cancel();
+                        }
+                    });
+
+                AlertDialog dialog = builder.create();
+            dialog.show();
         }
-        //TODO on balance un intent carte ou nid en fonction d'où on veut retourner
     }
 }
