@@ -119,6 +119,10 @@ public abstract class AbstractQuete extends SugarRecord<AbstractQuete> {
         return prerequis;
     }
 
+    public void setPrerequis(AbstractQuete prerequis) {
+        this.prerequis = prerequis;
+    }
+
     public int getIntelligenceRequise() {
         return intelligenceRequise;
     }
