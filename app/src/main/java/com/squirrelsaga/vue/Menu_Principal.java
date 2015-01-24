@@ -21,10 +21,13 @@ public class Menu_Principal extends ActionBarActivity {
     Button BtnCommencer;
     TextView Logo1;
     TextView Logo2;
+    Class<?> nextIntentClass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.i("SSAGA", "Starting...");
+
+        nextIntentClass = Slide_ecureuil.class;
         checkFirstLaunchAndSetupApplication();
 
         super.onCreate(savedInstanceState);
@@ -37,7 +40,7 @@ public class Menu_Principal extends ActionBarActivity {
         BtnCommencer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Menu_Principal.this, Slide_ecureuil.class);
+                Intent intent = new Intent(Menu_Principal.this, nextIntentClass);
                 startActivity(intent);
             }
         });
@@ -86,6 +89,7 @@ public class Menu_Principal extends ActionBarActivity {
 
         Controleur.setupDatabase();
 
+        nextIntentClass = choix_ecureuil.class;
 
         SharedPreferences settings = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();

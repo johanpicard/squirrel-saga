@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.squirrelsaga.controleur.Controleur;
+
 /**
  * Created by juliette on 14/01/2015.
  */
@@ -23,8 +25,7 @@ public class Vue_Nid extends Fragment {
 
         image_ecureuil = (ImageView) rootView.findViewById(R.id.Image_ecureuil);
 
-        //TODO Changer le nom en fonction de l'écrueil choisi
-        String imageName = "choix2";
+        String imageName = Controleur.getEcureuil().getNom();
 
         image_ecureuil.setImageResource(
                 getResources().getIdentifier(

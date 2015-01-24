@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import com.squirrelsaga.controleur.Controleur;
+
 
 public class Vue_Force extends Fragment {
 
@@ -21,8 +23,7 @@ public class Vue_Force extends Fragment {
 
         progressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
 
-        // TODO Charger la progression de façon dynamique
-        progressBar.setProgress(33);
+        progressBar.setProgress(Controleur.getEcureuil().getForce());
 
         return rootView;
     }

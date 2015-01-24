@@ -10,6 +10,7 @@ public class Ecureuil {
     private String nom;
     private String cheminImage;
     private int nbNoisettes = 0;
+
     private int intelligence = 0;
     private int vitesse = 0;
     private int force = 0;
@@ -35,14 +36,23 @@ public class Ecureuil {
         this.nbNoisettes += nbNoisettes;
     }
 
+    /**
+     * Caractéristique intelligence de l'écureuil, entre 0 et 100
+     */
     public int getIntelligence() {
         return intelligence;
     }
 
+    /**
+     * Caractéristique vitesse de l'écureuil, entre 0 et 100
+     */
     public int getVitesse() {
         return vitesse;
     }
 
+    /**
+     * Caractéristique force de l'écureuil, entre 0 et 100
+     */
     public int getForce() {
         return force;
     }

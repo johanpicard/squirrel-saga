@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import com.squirrelsaga.controleur.Controleur;
 import com.squirrelsaga.vue.R;
 
 
@@ -23,8 +24,7 @@ public class Vue_Vitesse extends Fragment {
                 R.layout.fragment_vue_vitesse, container, false);
 
         progressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
-        // TODO Charger la progression de façon dynamique
-        progressBar.setProgress(33);
+        progressBar.setProgress(Controleur.getEcureuil().getVitesse());
 
         return rootView;
     }
