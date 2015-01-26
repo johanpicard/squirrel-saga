@@ -212,7 +212,9 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
     private float getDistanceBetweenQuestAndPlayer(AbstractQuete quete) {
         LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(new Criteria(), true));
-        return location.distanceTo(quete.getLocation());
+        float distance = location.distanceTo(quete.getLocation());
+        Log.i("SSAGA", "Distance de la quete : "+String.format("%.2f", distance));
+        return distance;
     }
 
     private void showTooFarDialog(Activity activity, AbstractQuete quete) {
