@@ -50,24 +50,56 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
     private AbstractQuete queteSelected = null;
     Map<String, AbstractQuete> markersQuetes = new HashMap<String, AbstractQuete>();
     private Button button_go;
-    Ecureuil ecureuil = Controleur.getEcureuil();
+    private Ecureuil ecureuil;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i("SSAGA", "Create Carte");
         setContentView(R.layout.activity_carte);
-        MapFragment mapFragment = (MapFragment) getFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+
 
         button_go = (Button) findViewById(R.id.map_button_go);
-
-
 
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i("SSAGA", "Pause Carte");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i("SSAGA", "Destroy Carte");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i("SSAGA", "Stop Carte");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i("SSAGA", "Start Carte");
+    }
+
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i("SSAGA", "Resume");
+        MapFragment mapFragment = (MapFragment) getFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+    }
+
+        @Override
     public void onMapReady(GoogleMap map) {
 
         map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
@@ -75,6 +107,8 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
         map.getUiSettings().setCompassEnabled(true);
         map.getUiSettings().setMapToolbarEnabled(false);
 
+        ecureuil = Controleur.getEcureuil();    
+            
         setupCustomInfoWindows(map);
 
         showQuestsOnMap(map);
@@ -115,7 +149,9 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
 
     private void showQuestsOnMap(GoogleMap map) {
 
+        map.clear();
         Resources resources = getResources();
+        
 
         List<AbstractQuete> quetes = new ArrayList<AbstractQuete>();
 
@@ -124,7 +160,7 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
         quetes.addAll(AbstractQuete.listAll(QueteVitesse.class));
 
         for (AbstractQuete quete : quetes) {
-            Log.i("SSAGA", quete.toString());
+            Log.i("SSAGA", quete.getTitre()+" "+quete.getStatut(ecureuil));
             int iconeId = resources.getIdentifier(quete.getIcone(), "drawable", getPackageName());
 
             if(quete.getStatut(ecureuil) == AbstractQuete.Statut.REUSSIE ||
