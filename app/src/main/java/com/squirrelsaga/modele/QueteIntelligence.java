@@ -11,18 +11,16 @@ import java.util.Map;
 
 public class QueteIntelligence extends AbstractQuete {
 
+
     private String  question = "";
     private String reponse = "";
 
-    public QueteIntelligence(String titre, int intelligenceRequise, int vitesseRequise, int forceRequise, String texte, double latitude, double longitude, int noisette, int recompense, String question, String reponse) {
-        super(titre, intelligenceRequise, vitesseRequise, forceRequise, texte, latitude, longitude, noisette, recompense);
+    public QueteIntelligence(int queteId,String titre, int intelligenceRequise, int vitesseRequise, int forceRequise, String texte, double latitude, double longitude, int noisette, int recompense, String question, String reponse) {
+        super(queteId,titre, intelligenceRequise, vitesseRequise, forceRequise, texte, latitude, longitude, noisette, recompense);
         this.question = question;
         this.reponse = reponse;
     }
 
-    public QueteIntelligence(String titre, int intelligenceRequise, int vitesseRequise, int forceRequise, String texte, double latitude, double longitude, int noisette, int recompense) {
-        super(titre, intelligenceRequise, vitesseRequise, forceRequise, texte, latitude, longitude, noisette, recompense);
-    }
     public QueteIntelligence() {
     }
 
@@ -46,5 +44,7 @@ public class QueteIntelligence extends AbstractQuete {
     public String getIconeStandard() {
         return "icon_brain";
     }
+
+
 
 }

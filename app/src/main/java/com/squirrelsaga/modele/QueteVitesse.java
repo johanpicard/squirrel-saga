@@ -5,8 +5,8 @@ package com.squirrelsaga.modele;
  */
 
 public class QueteVitesse extends AbstractQuete {
-    public QueteVitesse(String titre, int intelligenceRequise, int vitesseRequise, int forceRequise, String texte, double latitude, double longitude, int noisette, int recompense) {
-        super(titre, intelligenceRequise, vitesseRequise, forceRequise, texte, latitude, longitude, noisette, recompense);
+    public QueteVitesse(Integer queteId, String titre, int intelligenceRequise, int vitesseRequise, int forceRequise, String texte, double latitude, double longitude, int noisette, int recompense) {
+        super(queteId, titre, intelligenceRequise, vitesseRequise, forceRequise, texte, latitude, longitude, noisette, recompense);
     }
 
     @Override
@@ -16,4 +16,5 @@ public class QueteVitesse extends AbstractQuete {
 
     public QueteVitesse() {
     }
+
 }

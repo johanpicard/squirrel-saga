@@ -2,6 +2,10 @@ package com.squirrelsaga.modele;
 
 
 import com.orm.SugarRecord;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Ecureuil extends SugarRecord<Ecureuil> {
 
@@ -15,6 +19,8 @@ public class Ecureuil extends SugarRecord<Ecureuil> {
 
     public Ecureuil() {
     }
+
+    private List<Integer> quetesReussies= new ArrayList<>();
 
     public Ecureuil(String nom, String cheminImage) {
         this.nom = nom;
@@ -92,5 +98,13 @@ public class Ecureuil extends SugarRecord<Ecureuil> {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public void setAReussi(Integer queteId) {
+        this.quetesReussies.add(queteId);
+    }
+
+    public boolean getAReussi(Integer queteId) {
+        return this.quetesReussies.contains(queteId);
     }
 }

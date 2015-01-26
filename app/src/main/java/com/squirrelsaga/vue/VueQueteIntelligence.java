@@ -66,10 +66,9 @@ public class VueQueteIntelligence extends AbstractQueteActivity {
             AlertDialog dialog = builder.create();
             dialog.show();
 
-            //On indique que la quête a été réussie
-            quete.setReussie();
-            quete.save();
+
             Ecureuil ecureuil = Controleur.getEcureuil();
+            ecureuil.setAReussi(quete.getQueteId());
             ecureuil.mange(quete.getNoisette());
             ecureuil.intelligenceLevelUp(quete.getRecompense());
             ecureuil.save();

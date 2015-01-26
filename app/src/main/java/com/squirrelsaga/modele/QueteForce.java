@@ -5,8 +5,9 @@ package com.squirrelsaga.modele;
  */
 
 public class QueteForce extends AbstractQuete {
-    public QueteForce(String titre, int intelligenceRequise, int vitesseRequise, int forceRequise, String texte, double latitude, double longitude, int noisette, int recompense) {
-        super(titre, intelligenceRequise, vitesseRequise, forceRequise, texte, latitude, longitude, noisette, recompense);
+
+    public QueteForce(Integer queteId, String titre, int intelligenceRequise, int vitesseRequise, int forceRequise, String texte, double latitude, double longitude, int noisette, int recompense) {
+        super(queteId, titre, intelligenceRequise, vitesseRequise, forceRequise, texte, latitude, longitude, noisette, recompense);
     }
 
     @Override
@@ -14,6 +15,10 @@ public class QueteForce extends AbstractQuete {
         return "icon_strength";
     }
 
+
+
     public QueteForce() {
     }
+
+
 }

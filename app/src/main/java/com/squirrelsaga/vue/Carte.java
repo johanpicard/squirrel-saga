@@ -122,6 +122,7 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
         quetes.addAll(AbstractQuete.listAll(QueteIntelligence.class));
         quetes.addAll(AbstractQuete.listAll(QueteForce.class));
         quetes.addAll(AbstractQuete.listAll(QueteVitesse.class));
+
         for (AbstractQuete quete : quetes) {
             Log.i("SSAGA", quete.toString());
             int iconeId = resources.getIdentifier(quete.getIcone(), "drawable", getPackageName());
