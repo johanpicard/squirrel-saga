@@ -113,7 +113,7 @@ public class Controleur {
     public static Ecureuil getEcureuil() {
         //Si on l'a déjà récupéré depuis la base alors on retourne la variable, sinon on le récupère
         if (null==ecureuil){
-            List<Ecureuil> ecureuils = Ecureuil.find(Ecureuil.class, "","");
+            List<Ecureuil> ecureuils = Ecureuil.listAll(Ecureuil.class);
             ecureuil = ecureuils.get(0);
         }
         return ecureuil;
