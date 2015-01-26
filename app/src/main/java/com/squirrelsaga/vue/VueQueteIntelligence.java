@@ -74,7 +74,7 @@ public class VueQueteIntelligence extends AbstractQueteActivity {
             Ecureuil ecureuil = Controleur.getEcureuil();
             ecureuil.mange(quete.getNoisette());
             ecureuil.intelligenceLevelUp(quete.getRecompense());
-
+            ecureuil.save();
             //Ecureuil set Intelligence
         }else{
             //On informe l'utilisateur de l'échec, il peut réasser

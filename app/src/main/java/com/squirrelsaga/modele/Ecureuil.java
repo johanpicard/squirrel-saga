@@ -1,11 +1,9 @@
 package com.squirrelsaga.modele;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import com.orm.SugarRecord;
 
-public class Ecureuil {
+public class Ecureuil extends SugarRecord<Ecureuil> {
 
     private String nom;
     private String cheminImage;
@@ -14,6 +12,9 @@ public class Ecureuil {
     private int intelligence = 0;
     private int vitesse = 0;
     private int force = 0;
+
+    public Ecureuil() {
+    }
 
     public Ecureuil(String nom, String cheminImage) {
         this.nom = nom;

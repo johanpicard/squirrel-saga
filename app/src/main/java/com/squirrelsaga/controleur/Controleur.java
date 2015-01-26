@@ -9,6 +9,11 @@ import com.squirrelsaga.modele.QueteForce;
 import com.squirrelsaga.modele.QueteIntelligence;
 import com.squirrelsaga.modele.QueteVitesse;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+
 /**
  * Created by Johan on 04/01/2015.
  */
@@ -21,7 +26,7 @@ public class Controleur {
     public static void setupDatabase() {
         setupQuests();
         setupTrees();
-
+        setupBob();
     }
 
     private static void setupQuests() {
@@ -87,14 +92,24 @@ public class Controleur {
 
     }
 
+    /**
+     * Création d'un écureuil si c'est le premier lancement
+     */
+    private static void setupBob() {
+        Log.i("SSAGA", "Setting up Bob");
+        ecureuil = new Ecureuil("Bob","");
+        ecureuil.intelligenceLevelUp(3);
+        ecureuil.save();
+    }
+
     public static AbstractQuete getQueteCourante() {
         return queteCourante;
     }
 
     public static Ecureuil getEcureuil() {
         if (null==ecureuil){
-            ecureuil = new Ecureuil("Bob","");
-            ecureuil.intelligenceLevelUp(3);
+            List<Ecureuil> ecureuils = Ecureuil.find(Ecureuil.class, "",null);
+            ecureuil = ecureuils.get(0);
         }
         return ecureuil;
     }
