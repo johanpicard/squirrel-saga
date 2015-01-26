@@ -126,6 +126,11 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
             Log.i("SSAGA", quete.toString());
             int iconeId = resources.getIdentifier(quete.getIcone(), "drawable", getPackageName());
 
+            if(quete.getStatut(ecureuil) == AbstractQuete.Statut.REUSSIE ||
+                    quete.getStatut(ecureuil) == AbstractQuete.Statut.PREREQUIS_INSATISFAIT){
+                continue;
+            }
+
             Bitmap icone = BitmapFactory.decodeResource(resources, iconeId);
             if (quete.getStatut(ecureuil) == AbstractQuete.Statut.COMPETENCES_INSUFFISANTES) {
                 icone = convertToGrayscale(icone);
