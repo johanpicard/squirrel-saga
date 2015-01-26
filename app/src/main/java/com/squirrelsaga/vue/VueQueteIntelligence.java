@@ -70,6 +70,7 @@ public class VueQueteIntelligence extends AbstractQueteActivity {
 
             //On indique que la quête a été réussie
             quete.setReussie();
+            quete.save();
             Ecureuil ecureuil = Controleur.getEcureuil();
             ecureuil.mange(quete.getNoisette());
             ecureuil.intelligenceLevelUp(quete.getRecompense());
