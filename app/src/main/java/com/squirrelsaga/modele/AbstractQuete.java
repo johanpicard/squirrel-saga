@@ -24,13 +24,24 @@ public abstract class AbstractQuete extends SugarRecord<AbstractQuete> {
         public static final String COMPETENCES_INSUFFISANTES= "competences insuffisantes";
     }
 
-    private AbstractQuete prerequis;
+
+
+    protected Integer queteId;
+
+    public Integer getPrerequis() {
+        return prerequis;
+    }
+
+    public void setPrerequis(Integer prerequis) {
+        this.prerequis = prerequis;
+    }
+
+    public Integer prerequis = null;
 
     public int intelligenceRequise = 0;
     public int vitesseRequise = 0;
     public int forceRequise = 0;
 
-    private boolean reussie= false;
     public String texte;
 
     public double latitude;
@@ -51,7 +62,8 @@ public abstract class AbstractQuete extends SugarRecord<AbstractQuete> {
     public AbstractQuete(){
     }
 
-    protected AbstractQuete(String titre, int intelligenceRequise, int vitesseRequise, int forceRequise, String texte, double latitude, double longitude, int noisette, int recompense) {
+    protected AbstractQuete(Integer queteId,String titre, int intelligenceRequise, int vitesseRequise, int forceRequise, String texte, double latitude, double longitude, int noisette, int recompense) {
+        this.queteId = queteId;
         this.titre = titre;
         this.intelligenceRequise = intelligenceRequise;
         this.vitesseRequise = vitesseRequise;
@@ -63,17 +75,15 @@ public abstract class AbstractQuete extends SugarRecord<AbstractQuete> {
         this.noisette = noisette;
     }
 
-    public void setReussie(){
-        this.reussie = true;
-    }
+
 
     public String getStatut(Ecureuil ecureuil){
-        if(reussie){
+        if(ecureuil.getAReussi(this.queteId)){
             return Statut.REUSSIE;
         }
 
         if(null !=prerequis) {
-            if (!(prerequis.getStatut(ecureuil) == Statut.REUSSIE)) {
+            if (!ecureuil.getAReussi(prerequis)) {
                 return Statut.PREREQUIS_INSATISFAIT;
             }
             ;
@@ -115,13 +125,8 @@ public abstract class AbstractQuete extends SugarRecord<AbstractQuete> {
         return texte;
     }
 
-    public AbstractQuete getPrerequis() {
-        return prerequis;
-    }
 
-    public void setPrerequis(AbstractQuete prerequis) {
-        this.prerequis = prerequis;
-    }
+
 
     public int getIntelligenceRequise() {
         return intelligenceRequise;
@@ -143,11 +148,15 @@ public abstract class AbstractQuete extends SugarRecord<AbstractQuete> {
         return longitude;
     }
 
+    public Integer getQueteId() {
+        return queteId;
+    }
+
+
     @Override
     public String toString() {
         return "AbstractQuete{" +
                 "titre='" + titre + '\'' +
-                ", reussie=" + reussie +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
                 ", icone='" + icone + '\'' +

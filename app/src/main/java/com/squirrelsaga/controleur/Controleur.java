@@ -31,18 +31,36 @@ public class Controleur {
 
     private static void setupQuests() {
         Log.i("SSAGA", "Setting up quests");
-        AbstractQuete queteForce = new QueteForce("Trouver la princesse", 0,0,0,"Elle est là !",45.7767953, 4.8482761, 10, 10);
+        AbstractQuete queteForce = new QueteForce(0,"Bouger des troncs", 0,0,0,"Elle est là !",45.7767953, 4.8482761, 10, 10);
         queteForce.save();
         Log.i("SSAGA", queteForce.toString());
-        AbstractQuete queteVitesse = new QueteVitesse("Manger des noisettes",1,0,0,"Miam", 45.7813447, 4.8513660, 10, 10);
-        queteVitesse.setPrerequis(queteForce);
+
+        AbstractQuete queteVitesse = new QueteVitesse(1,"Manger des noisettes",1,0,0,"Miam", 45.7813447, 4.8513660, 10, 10);
+        Log.i("SSAGA", queteVitesse.toString());
         queteVitesse.save();
 
-        Log.i("SSAGA", queteVitesse.toString());
-        AbstractQuete queteIntelligence = new QueteIntelligence("Résoudre l'énigme du hibou",1,0,0,"Trop cool !", 45.7760769,	4.8562584, 10,10,
+        AbstractQuete quetePrincipale0 = new QueteForce(2,"Devenir un guerrier",1,0,0,"Miam", 45.7853447, 4.8563660, 10, 10);
+        Log.i("SSAGA", quetePrincipale0.toString());
+        quetePrincipale0.save();
+
+        AbstractQuete quetePrincipale1 = new QueteForce(3,"Sauver la princesse",1,0,0,"Miam", 45.7853447, 4.8563660, 10, 10);
+        Log.i("SSAGA", quetePrincipale1.toString());
+        quetePrincipale1.setPrerequis(quetePrincipale0.getQueteId());
+        quetePrincipale1.save();
+
+
+        QueteIntelligence queteIntelligence = new QueteIntelligence(4,"Résoudre l'énigme du hibou",1,0,0,"Trop cool !", 45.7760769,	4.8562584, 10,10,
                 "Quelle est la couleur du cheval blanc d'Henri IV?","Blanc");
         queteIntelligence.save();
         Log.i("SSAGA", queteIntelligence.toString());
+
+        AbstractQuete queteIntelligence2 = new QueteIntelligence(5,"Résoudre l'autre énigme",1,0,0,"Trop cool !", 45.7960769,	4.8662584, 10,10,
+                "Quelle est la couleur du cheval noir d'Henri IV?","noir");
+        queteIntelligence2.setPrerequis(queteIntelligence.getQueteId());
+        queteIntelligence2.save();
+
+
+        Log.i("SSAGA", queteIntelligence2.toString());
     }
 
     /**
