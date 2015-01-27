@@ -70,7 +70,7 @@
             android:value="AIzaSyCwTaoKX7zu6UUDD4GdmiWHUwo1OeBMy90" />
 
         <activity
-            android:name=".quete_vitesse"
+            android:name=".Vue_Quete_Vitesse"
             android:label="@string/title_activity_quete_vitesse" >
         </activity>
     </application>

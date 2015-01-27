@@ -45,7 +45,7 @@ public class Slide_ecureuil extends FragmentActivity {
         fragments.add(Fragment.instantiate(this, Vue_Nid.class.getName()));
         fragments.add(Fragment.instantiate(this,Vue_Force.class.getName()));
         fragments.add(Fragment.instantiate(this,Vue_Intelligence.class.getName()));
-        fragments.add(Fragment.instantiate(this,Vue_Quete_Vitesse.class.getName()));
+        fragments.add(Fragment.instantiate(this,Vue_Vitesse.class.getName()));
 
         // Création de l'adapter qui s'occupera de l'affichage de la liste de
         // Fragments
