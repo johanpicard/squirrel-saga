@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
+    <!-- Backgroud -->
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -12,6 +13,7 @@
         android:src="@drawable/salle_gym"
     />
 
+    <!-- Progress bar et images -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -57,6 +59,54 @@
                 style="@style/progressBarHorizontal"
                 android:max="100"/>
         </RelativeLayout>
+    </LinearLayout>
+
+    <!-- Petites fleches -->
+    <LinearLayout
+        android:id="@+id/kikoo"
+        android:weightSum="4"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="match_parent" >
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="4" >
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0px"
+                android:layout_weight="2"/>
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="0px"
+                android:layout_weight="0.5"
+                android:layout_gravity="left"
+                android:src="@drawable/arrowleft"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical"/>
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="4" >
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0px"
+                android:layout_weight="2"/>
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="0px"
+                android:layout_weight="0.5"
+                android:layout_gravity="left"
+                android:src="@drawable/arrowright"/>
+        </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>

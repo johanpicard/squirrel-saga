@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
+    <!-- Backgroud -->
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -12,7 +13,7 @@
         android:src="@drawable/nid" />
 
 
-
+    <!-- Bouton carte et infos -->
     <LinearLayout
         android:id="@+id/out"
         android:weightSum="3"
@@ -60,6 +61,7 @@
         </LinearLayout>
     </LinearLayout>
 
+    <!-- Message bienvenue et écureuil -->
     <LinearLayout
         android:id="@+id/out2"
         android:weightSum="4"
@@ -72,13 +74,53 @@
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:orientation="vertical"
-            android:weightSum="2"
+            android:weightSum="5"
             android:gravity="bottom">
+            <TextView
+                android:id="@+id/textBienvenue"
+                android:layout_width="fill_parent"
+                android:layout_height="0px"
+                android:layout_weight="1"
+                android:gravity="center"
+                style="@style/information"
+                android:text="Bienvenue dans le nid de truc !"
+                android:singleLine="false"/>
             <ImageView
                 android:id="@+id/Image_ecureuil"
                 android:layout_width="fill_parent"
                 android:layout_height="0px"
-                android:layout_weight="1"/>
+                android:layout_weight="2.5"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Petites fleches -->
+    <LinearLayout
+        android:id="@+id/kikoo"
+        android:weightSum="4"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="match_parent" >
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="vertical"/>
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="4" >
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0px"
+                android:layout_weight="2"/>
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="0px"
+                android:layout_weight="0.5"
+                android:layout_gravity="left"
+                android:src="@drawable/arrowright"/>
         </LinearLayout>
     </LinearLayout>
 
