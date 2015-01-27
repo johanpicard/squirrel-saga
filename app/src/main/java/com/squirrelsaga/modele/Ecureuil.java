@@ -64,18 +64,18 @@ public class Ecureuil extends SugarRecord<Ecureuil> {
         return force;
     }
 
-    public int forceLevelUp() {
-        force = force++;
+    public int forceLevelUp(int recompense) {
+        force += recompense;
         return force;
     }
 
     public int intelligenceLevelUp(int recompense) {
-        intelligence = intelligence+recompense;
+        intelligence += recompense;
         return intelligence;
     }
 
-    public int vitesseLevelUp() {
-        vitesse = vitesse++;
+    public int vitesseLevelUp(int recompense) {
+        vitesse += recompense;
         return vitesse;
     }
 
