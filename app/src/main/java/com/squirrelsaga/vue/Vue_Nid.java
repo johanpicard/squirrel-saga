@@ -25,7 +25,7 @@ public class Vue_Nid extends Fragment {
 
         image_ecureuil = (ImageView) rootView.findViewById(R.id.Image_ecureuil);
 
-        String imageName = Controleur.getEcureuil().getNom();
+        String imageName = Controleur.getEcureuil().getCheminImage();
 
         image_ecureuil.setImageResource(
                 getResources().getIdentifier(

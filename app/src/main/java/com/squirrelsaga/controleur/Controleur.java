@@ -23,6 +23,8 @@ public class Controleur {
 
     private static Ecureuil ecureuil;
 
+    public static ArrayList<String> objetsARecup;
+
     public static void setupDatabase() {
         setupQuests();
         setupTrees();
@@ -30,8 +32,14 @@ public class Controleur {
     }
 
     private static void setupQuests() {
+        objetsARecup = new ArrayList<>();
+        objetsARecup.add("Glands");
+        objetsARecup.add("Aiguilles");
+        objetsARecup.add("Pommes de pins");
+        objetsARecup.add("Feuilles d'érable");
         Log.i("SSAGA", "Setting up quests");
-        AbstractQuete queteForce = new QueteForce(0,"Bouger des troncs", 0,0,0,"Elle est là !",45.7767953, 4.8482761, 10, 10);
+        int[] objets = {5,0,0,0};
+        AbstractQuete queteForce = new QueteForce(0,"Bouger des troncs", 0,0,0,"Elle est là !",45.7767953, 4.8482761, 10, 10,objets);
         queteForce.save();
         Log.i("SSAGA", queteForce.toString());
 
@@ -39,11 +47,11 @@ public class Controleur {
         Log.i("SSAGA", queteVitesse.toString());
         queteVitesse.save();
 
-        AbstractQuete quetePrincipale0 = new QueteForce(2,"Devenir un guerrier",1,0,0,"Miam", 45.7853447, 4.8563660, 10, 10);
+        AbstractQuete quetePrincipale0 = new QueteForce(2,"Devenir un guerrier",1,0,0,"Miam", 45.7853447, 4.8563660, 10, 10,objets);
         Log.i("SSAGA", quetePrincipale0.toString());
         quetePrincipale0.save();
 
-        AbstractQuete quetePrincipale1 = new QueteForce(3,"Sauver la princesse",1,0,0,"Miam", 45.7853447, 4.8563660, 10, 10);
+        AbstractQuete quetePrincipale1 = new QueteForce(3,"Sauver la princesse",1,0,0,"Miam", 45.7853447, 4.8563660, 10, 10,objets);
         Log.i("SSAGA", quetePrincipale1.toString());
         quetePrincipale1.setPrerequis(quetePrincipale0.getQueteId());
         quetePrincipale1.save();
