@@ -14,6 +14,7 @@
     <string name="explication_choix">Commence par choisir ton écureuil, et donne lui un nom !</string>
     <string name="quete_force">Va chercher ces objets !</string>
     <string name="quete_intelligence">Trouve la réponse à la question !</string>
+    <string name="quete_vitesse">Va vite à l\'endroit indiqué sur ta carte !</string>
     <string name="text_button_commencer">Commencer</string>
     <string name="text_button_valider">OK !</string>
     <string name="title_activity_quete__intelligence">Quete_Intelligence</string>

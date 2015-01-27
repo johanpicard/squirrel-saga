@@ -37,12 +37,7 @@
             android:id="@+id/question"
             android:text="Voici la question ?"
             android:textColor="#4F4F4F"
-            android:shadowColor="@color/logo_color"
-            android:shadowDx="1"
-            android:shadowDy="1"
-            android:shadowRadius="1"
-            android:textSize="60sp"
-            android:singleLine="false"
+            style="@style/informationGris"
             android:gravity="center"/>
 
         <EditText
