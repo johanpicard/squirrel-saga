@@ -2,6 +2,7 @@ package com.squirrelsaga.vue;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +30,11 @@ public class Vue_Quete_Intelligence extends AbstractQueteActivity {
 
         TextView questionText = (TextView)findViewById(R.id.question);
         questionText.setText(question);
+
+        Typeface font = Typeface.createFromAsset(getAssets(), "GrandHotel-Regular.otf");
+        questionText.setTypeface(font);
+        TextView text_info = (TextView)findViewById(R.id.text_info);
+        text_info.setTypeface(font);
     }
 
     /**
@@ -47,7 +53,7 @@ public class Vue_Quete_Intelligence extends AbstractQueteActivity {
     public void verifierReponse(View v){
         QueteIntelligence quete = getActiveQuest();
         String reponse = quete.getReponse();
-        EditText reponseText = (EditText)findViewById(R.id.editText);
+        EditText reponseText = (EditText)findViewById(R.id.edit_reponse);
 
         if (reponse.toUpperCase().equals(reponseText.getText().toString().toUpperCase()))
         {
