@@ -30,7 +30,7 @@ public class Vue_Nid extends Fragment {
         image_ecureuil.setImageResource(
                 getResources().getIdentifier(
                         imageName, "drawable", getActivity().getPackageName()));
-
+// TODO mettre des ecureuil.save partout
         return rootView;
     }
 

@@ -5,8 +5,8 @@
     android:weightSum="1">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:scaleType="centerCrop"
         android:id="@+id/Background_nid"
         android:src="@drawable/nid" />
@@ -81,22 +81,5 @@
                 android:layout_weight="1"/>
         </LinearLayout>
     </LinearLayout>
-
-
-
-    <Button
-        style="@style/btnStyleOrange"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_button_commencer"
-        android:id="@+id/button"
-        android:onClick="afficherChoix"
-        android:layout_marginBottom="20dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.29" />
-
-
 
 </RelativeLayout>
