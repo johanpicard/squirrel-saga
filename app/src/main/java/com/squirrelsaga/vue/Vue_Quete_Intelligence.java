@@ -2,9 +2,7 @@ package com.squirrelsaga.vue;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -14,7 +12,7 @@ import com.squirrelsaga.controleur.Controleur;
 import com.squirrelsaga.modele.Ecureuil;
 import com.squirrelsaga.modele.QueteIntelligence;
 
-public class VueQueteIntelligence extends AbstractQueteActivity {
+public class Vue_Quete_Intelligence extends AbstractQueteActivity {
 
     @Override
     /**
@@ -22,7 +20,7 @@ public class VueQueteIntelligence extends AbstractQueteActivity {
      */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vue_quete_intelligence);
+        setContentView(R.layout.activity_quete_intelligence);
 
         Log.i("SSAGA", getActiveQuest().toString());
 
@@ -54,7 +52,7 @@ public class VueQueteIntelligence extends AbstractQueteActivity {
         if (reponse.toUpperCase().equals(reponseText.getText().toString().toUpperCase()))
         {
             //On informe l'utilisateur de la réussite
-            AlertDialog.Builder builder = new AlertDialog.Builder(VueQueteIntelligence.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(Vue_Quete_Intelligence.this);
             builder.setMessage("Vous avez réussi cette quête")
                     .setTitle("Bravo")
                     .setPositiveButton("Retour à la carte", new DialogInterface.OnClickListener() {
@@ -75,7 +73,7 @@ public class VueQueteIntelligence extends AbstractQueteActivity {
             //Ecureuil set Intelligence
         }else{
             //On informe l'utilisateur de l'échec, il peut réasser
-            AlertDialog.Builder builder = new AlertDialog.Builder(VueQueteIntelligence.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(Vue_Quete_Intelligence.this);
             builder.setMessage("Vous n'avez pas saisi la bonne réponse, vérifiez l'ortographe, ou proposez une autre réponse. ")
                     .setTitle("Perdu").
                     setNegativeButton("Ok", new DialogInterface.OnClickListener() {

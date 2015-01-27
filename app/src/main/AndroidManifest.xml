@@ -33,13 +33,13 @@
         <activity
             android:name=".Carte"
             android:label="@string/title_activity_carte"
-            android:parentActivityName=".Menu_Principal">
+            android:parentActivityName=".Menu_Principal" >
         </activity>
         <activity
-            android:name=".VueQueteIntelligence"
+            android:name=".Vue_Quete_Intelligence"
             android:label="Quete Intelligence"
-            android:parentActivityName=".Carte"
-            android:noHistory="true">
+            android:noHistory="true"
+            android:parentActivityName=".Carte" >
         </activity>
         <activity
             android:name=".Slide_ecureuil"
@@ -69,7 +69,10 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyCwTaoKX7zu6UUDD4GdmiWHUwo1OeBMy90" />
 
-
+        <activity
+            android:name=".quete_vitesse"
+            android:label="@string/title_activity_quete_vitesse" >
+        </activity>
     </application>
 
 </manifest>

@@ -13,7 +13,7 @@ import com.squirrelsaga.vue.R;
 
 
 
-public class Vue_Vitesse extends Fragment {
+public class Vue_Quete_Vitesse extends Fragment {
 
     ProgressBar progressBar;
 

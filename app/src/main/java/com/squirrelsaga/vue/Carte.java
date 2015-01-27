@@ -227,11 +227,11 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
 
             Class targetActivity = null;
             if (queteSelected instanceof QueteIntelligence) {
-                targetActivity = VueQueteIntelligence.class;
+                targetActivity = Vue_Quete_Intelligence.class;
             } else if (queteSelected instanceof QueteForce) {
-                return;
+                targetActivity = Vue_Quete_Force.class;
             } else if (queteSelected instanceof QueteVitesse) {
-                return;
+                targetActivity = Vue_Quete_Vitesse.class;
             } else {
                 return;
             }

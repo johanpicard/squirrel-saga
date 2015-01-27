@@ -1,20 +1,15 @@
 package com.squirrelsaga.vue;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.Button;
 import android.widget.TextView;
 
-import com.squirrelsaga.controleur.Controleur;
-import com.squirrelsaga.modele.Ecureuil;
 import com.squirrelsaga.modele.QueteForce;
-import com.squirrelsaga.modele.QueteIntelligence;
 
-public class VueQueteForce extends AbstractQueteActivity {
+public class Vue_Quete_Force extends AbstractQueteActivity {
 
     @Override
     /**
@@ -22,7 +17,7 @@ public class VueQueteForce extends AbstractQueteActivity {
      */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vue_quete_intelligence);
+        setContentView(R.layout.activity_quete_force);
 
         Log.i("SSAGA", getActiveQuest().toString());
 
@@ -32,8 +27,21 @@ public class VueQueteForce extends AbstractQueteActivity {
         String objectif2 = quete.getObjectif2();
         int valeur2 = quete.getValeur2();
 
-        //TextView questionText = (TextView)findViewById(R.id.question);
-        //questionText.setText(question);
+        Typeface font = Typeface.createFromAsset(getAssets(), "GrandHotel-Regular.otf");
+
+        TextView text_info = (TextView)findViewById(R.id.text_info);
+        text_info.setTypeface(font);
+        TextView text_a_ramasser1 = (TextView)findViewById(R.id.text_a_ramasser1);
+        text_a_ramasser1.setTypeface(font);
+        TextView text_a_ramasser2 = (TextView)findViewById(R.id.text_a_ramasser2);
+        text_a_ramasser2.setTypeface(font);
+        // TODO affichage dynamique des texte à ramasser
+
+        Button btn_ramasser1 = (Button)findViewById(R.id.BtnRamasser1);
+        btn_ramasser1.setTypeface(font);
+        Button btn_ramasser2 = (Button)findViewById(R.id.BtnRamasser2);
+        btn_ramasser2.setTypeface(font);
+
     }
 
     /**
