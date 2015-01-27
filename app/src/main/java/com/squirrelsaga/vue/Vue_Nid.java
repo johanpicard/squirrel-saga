@@ -39,7 +39,7 @@ public class Vue_Nid extends Fragment {
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "GrandHotel-Regular.otf");
         Bienvenue_ecureuil.setTypeface(font);
 
-        Bienvenue_ecureuil.setText(Controleur.getEcureuil().getNom());
+        Bienvenue_ecureuil.setText("Bienvenue dans le nid de " + Controleur.getEcureuil().getNom() + " !");
 
         return rootView;
 

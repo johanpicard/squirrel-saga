@@ -25,16 +25,24 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:weightSum="4" >
+            android:weightSum="16" >
             <ImageButton
                 android:src="@drawable/bouton_carte"
                 android:id="@+id/BtnCarte"
                 android:layout_width="fill_parent"
                 android:layout_height="0px"
-                android:layout_weight="1"
+                android:layout_weight="4"
                 android:background="@null"
                 android:scaleType="fitCenter"
-                android:onClick="afficherCarte" />
+                android:onClick="afficherCarte"/>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:id="@+id/text_a_ramasser2"
+                android:text="Carte"
+                style="@style/information"
+                android:gravity="center"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="0px"

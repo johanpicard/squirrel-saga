@@ -23,7 +23,7 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="1.2"
             android:id="@+id/text_info"
             android:gravity="center"
             android:text="@string/quete_force"
@@ -33,7 +33,7 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.5"
+            android:layout_weight="1.4"
             android:weightSum="3"
             android:gravity="center">
             <ImageView
@@ -65,12 +65,12 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.5"/>
+            android:layout_weight="0.3"/>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.5"
+            android:layout_weight="1.2"
             android:weightSum="3"
             android:gravity="center">
             <ImageView
@@ -99,6 +99,16 @@
             style="@style/btnStyleOrange"
             android:layout_gravity="center" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.75"
+            android:text="Nid"
+            android:id="@+id/buttonNid"
+            android:onClick="retourNid"
+            style="@style/btnStyleOrange"
+            android:layout_gravity="left"/>
     </LinearLayout>
-
 </RelativeLayout>
+
+

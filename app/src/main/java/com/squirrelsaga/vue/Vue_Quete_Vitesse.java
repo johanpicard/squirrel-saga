@@ -1,9 +1,11 @@
 package com.squirrelsaga.vue;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import com.squirrelsaga.modele.QueteVitesse;
 
@@ -57,6 +59,11 @@ public class Vue_Quete_Vitesse extends AbstractQueteActivity {
             System.out.println(hms);
             textViewTime.setText(hms);
         }
+    }
+
+    public void afficherCarte(View view) {
+        Intent intent = new Intent(this, Carte.class);
+        startActivity(intent);
     }
 
 }

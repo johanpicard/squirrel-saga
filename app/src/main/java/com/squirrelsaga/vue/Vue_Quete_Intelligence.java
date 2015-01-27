@@ -2,6 +2,7 @@ package com.squirrelsaga.vue;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -92,5 +93,10 @@ public class Vue_Quete_Intelligence extends AbstractQueteActivity {
                 AlertDialog dialog = builder.create();
             dialog.show();
         }
+    }
+
+    public void retourNid(View view) {
+        Intent intent = new Intent(this, Slide_ecureuil.class);
+        startActivity(intent);
     }
 }
