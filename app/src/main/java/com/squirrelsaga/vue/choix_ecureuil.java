@@ -49,6 +49,7 @@ public class choix_ecureuil extends ActionBarActivity {
                 int idx = radioGroup.indexOfChild(selectedButton) + 1;
                 Controleur.getEcureuil().setCheminImage("choix" + idx);
                 Controleur.getEcureuil().setNom(nomInput.getText().toString());
+                Controleur.getEcureuil().save();
                 Intent intent = new Intent(choix_ecureuil.this, Slide_ecureuil.class);
                 startActivity(intent);
             }

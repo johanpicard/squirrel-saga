@@ -1,5 +1,6 @@
 package com.squirrelsaga.controleur;
 
+import android.location.Location;
 import android.util.Log;
 
 import com.squirrelsaga.modele.AbstractQuete;
@@ -28,7 +29,7 @@ public class Controleur {
     public static void setupDatabase() {
         setupQuests();
         setupTrees();
-        setupBob();
+        //setupBob();
     }
 
     private static void setupQuests() {
@@ -126,6 +127,19 @@ public class Controleur {
         ecureuil = new Ecureuil("Bob","");
         ecureuil.intelligenceLevelUp(3);
         ecureuil.save();
+    }
+
+    public static ArrayList<Location> getPositionsArbres(String typeArbre){
+        List<Arbre> arbreConcernes = Arbre.find(Arbre.class, "type = ?", typeArbre);
+        ArrayList<Location> listeRetournee = new ArrayList<Location>();
+
+        for (Arbre a : arbreConcernes) {
+            Location positionArbre = new Location(a.get_arbre_nom());
+            positionArbre.setLatitude(a.get_arbre_posx());
+            positionArbre.setLongitude(a.get_arbre_posy());
+            listeRetournee.add(positionArbre);
+        }
+        return listeRetournee;
     }
 
     public static AbstractQuete getQueteCourante() {

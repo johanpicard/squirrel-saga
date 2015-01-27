@@ -34,13 +34,12 @@ public class Vue_Nid extends Fragment {
         image_ecureuil.setImageResource(
                 getResources().getIdentifier(
                         imageName, "drawable", getActivity().getPackageName()));
-// TODO mettre des ecureuil.save partout
 
         Bienvenue_ecureuil = (TextView) rootView.findViewById(R.id.textBienvenue);
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "GrandHotel-Regular.otf");
         Bienvenue_ecureuil.setTypeface(font);
-        // TODO changer le nom de l'écureuil
-         // Bienvenue_ecureuil.setText();
+
+        Bienvenue_ecureuil.setText(Controleur.getEcureuil().getNom());
 
         return rootView;
 
