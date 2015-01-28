@@ -11,8 +11,6 @@ import com.squirrelsaga.modele.QueteIntelligence;
 import com.squirrelsaga.modele.QueteVitesse;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -26,12 +24,18 @@ public class Controleur {
 
     public static ArrayList<String> objetsARecup;
 
+    /**
+     * Lors du premier lancement on initialise la base
+     */
     public static void setupDatabase() {
         setupQuests();
         setupTrees();
-        //setupBob();
+        setupBob();
     }
 
+    /**
+     * Insertion dans la base des quêtes
+     */
     private static void setupQuests() {
         objetsARecup = new ArrayList<>();
         objetsARecup.add("Glands");
@@ -123,6 +127,7 @@ public class Controleur {
      * Création d'un écureuil si c'est le premier lancement
      */
     private static void setupBob() {
+        //todo enlever pour la release
         Log.i("SSAGA", "Setting up Bob");
         ecureuil = new Ecureuil("Bob","");
         ecureuil.intelligenceLevelUp(3);
@@ -151,6 +156,7 @@ public class Controleur {
      * @return Ecureuil
      */
     public static Ecureuil getEcureuil() {
+        Log.i("SSAGA", "récupération de l'écureuil");
         //Si on l'a déjà récupéré depuis la base alors on retourne la variable, sinon on le récupère
         if (null==ecureuil){
             List<Ecureuil> ecureuils = Ecureuil.listAll(Ecureuil.class);
