@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 style="@style/information"
-                android:text="Bienvenue dans ton nid ! Tu trouveras en te déplaçant vers la droite les différentes pièces de ton nid où son stocké tes trophés. "
+                android:text="Bienvenue dans ton nid ! Tu trouveras en te déplaçant vers la droite les différentes pièces de ton nid où sont stockés tes trophées. "
                 android:singleLine="false" />
 
             <TextView

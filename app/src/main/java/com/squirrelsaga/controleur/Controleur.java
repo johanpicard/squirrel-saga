@@ -48,21 +48,21 @@ public class Controleur {
         queteForce.save();
         Log.i("SSAGA", queteForce.toString());
 
-        AbstractQuete queteVitesse0 = new QueteVitesse(1,"Manger des noisettes",0,0,0,"Ton écureuil a faim, dépêche toi !", 45.7813447, 4.8513660, 10, 10);
+        AbstractQuete queteVitesse0 = new QueteVitesse(1,"Manger des noisettes",0,0,0,"Ton écureuil a faim, dépêche toi !", 45.7813447, 4.8513660, 10, 10,45.7813447, 4.8513660);
         Log.i("SSAGA", queteVitesse0.toString());
         queteVitesse0.save();
 
-        AbstractQuete queteVitesse1 = new QueteVitesse(2,"Aller à l'Érable de Montpellier",0,0,0,"Vite !",  45.779831, 4.857700, 10, 10);
+        AbstractQuete queteVitesse1 = new QueteVitesse(2,"Aller à l'Érable de Montpellier",0,0,0,"Vite !",  45.779831, 4.857700, 10, 10,45.780666, 4.856438);
         // destination : 45.78066, 4.856438
         // temps = 3 min
         Log.i("SSAGA", queteVitesse1.toString());
         queteVitesse1.save();
 
-        AbstractQuete quetePrincipale0 = new QueteForce(3,"Porter des branches",0,0,0,"Rend ton écureuil plus fort !", 45.7853447, 4.8563660, 10, 10,objets);
+        AbstractQuete quetePrincipale0 = new QueteForce(3,"Porter des branches",5,0,5,"Rend ton écureuil plus fort !", 45.7853447, 4.8563660, 10, 10,objets);
         Log.i("SSAGA", quetePrincipale0.toString());
         quetePrincipale0.save();
 
-        AbstractQuete quetePrincipale1 = new QueteForce(4,"Sauver la princesse",0,0,0,"Elle est là !", 45.7853447, 4.8563660, 10, 10,objets);
+        AbstractQuete quetePrincipale1 = new QueteForce(4,"Sauver la princesse",10,10,10,"Elle est là !", 45.7853447, 4.8563660, 10, 10,objets);
         Log.i("SSAGA", quetePrincipale1.toString());
         quetePrincipale1.setPrerequis(quetePrincipale0.getQueteId());
         quetePrincipale1.save();
@@ -77,7 +77,7 @@ public class Controleur {
         queteIntelligence2.save();
         Log.i("SSAGA", queteIntelligence2.toString());
 
-        AbstractQuete queteIntelligence3 = new QueteIntelligence(7,"Il se porte comme un charme",2,0,0,"Mais qui est-il ?", 45.784153, 4.856175, 10,10,
+        AbstractQuete queteIntelligence3 = new QueteIntelligence(7,"Il se porte comme un charme",10,0,5,"Mais qui est-il ?", 45.784153, 4.856175, 10,10,
                 "Quel est le nom de cet arbre ?","Charme");
         queteIntelligence3.setPrerequis(queteIntelligence2.getQueteId());
         queteIntelligence3.save();
