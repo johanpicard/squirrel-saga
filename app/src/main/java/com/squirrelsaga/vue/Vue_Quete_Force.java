@@ -23,6 +23,13 @@ import java.util.ArrayList;
 public class Vue_Quete_Force extends AbstractQueteActivity {
     public final static float MAX_DISTANCE_BETWEEN_TREE_AND_PLAYER = 10;
 
+    private String objectif1 = "";
+    private int valeur1 = 0;
+    private String objectif2 = "";
+    private int valeur2 = 0;
+    private int valeur1Courante = 0;
+    private int valeur2Courante = 0;
+
     @Override
     /**
      * Initialise la vue en affichant la question
@@ -34,12 +41,12 @@ public class Vue_Quete_Force extends AbstractQueteActivity {
         Log.i("SSAGA", getActiveQuest().toString());
 
         QueteForce quete = getActiveQuest();
-        String objectif1 = quete.getObjectif1();
-        int valeur1 = quete.getValeur1();
-        String objectif2 = quete.getObjectif2();
-        int valeur2 = quete.getValeur2();
-        int valeur1Courante = 0;
-        int valeur2Courante = 0;
+        objectif1 = quete.getObjectif1();
+        valeur1 = quete.getValeur1();
+        objectif2 = quete.getObjectif2();
+        valeur2 = quete.getValeur2();
+        valeur1Courante = 0;
+        valeur2Courante = 0;
 
 
         Typeface font = Typeface.createFromAsset(getAssets(), "GrandHotel-Regular.otf");
@@ -70,14 +77,53 @@ public class Vue_Quete_Force extends AbstractQueteActivity {
     }
 
     /**
-     * Permet de vérifier la réponse
-     * @param v View
-     * @return int 0 si erreur ou 1 si vrai
+     * Permet de ramasser l'objet désiré si l'on est à portée
+     * @param view View
      */
-    public void rammasserObjet(View v){
-        QueteForce quete = getActiveQuest();
-        //isPlayerTooFar()
+    public void rammasserObjet1(View view){
+        if(isPlayerTooFar(objectif1)){
+            AlertDialog.Builder builder = new AlertDialog.Builder(Vue_Quete_Force.this);
+            builder.setMessage("Il n'y a pas de "+ objectif1.toLowerCase() + " à proximité !")
+                    .setTitle("Trop loin").
+                    setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        } else {
+            QueteForce quete = getActiveQuest();
+            if (valeur1Courante < valeur1) {
+                valeur1Courante++;
+                if (valeur1Courante == valeur1 && valeur2Courante == valeur2) {
+                    terminerQuete(quete);
+                }
+            }
+        }
+    }
 
+    public void rammasserObjet2(View view){
+        if(isPlayerTooFar(objectif2)){
+            AlertDialog.Builder builder = new AlertDialog.Builder(Vue_Quete_Force.this);
+            builder.setMessage("Il n'y a pas de "+ objectif2.toLowerCase() + " à proximité !")
+                    .setTitle("Trop loin").
+                    setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        } else {
+            QueteForce quete = getActiveQuest();
+            if (valeur2Courante < valeur2) {
+                valeur2Courante++;
+                if (valeur1Courante == valeur1 && valeur2Courante == valeur2) {
+                    terminerQuete(quete);
+                }
+            }
+        }
     }
 
     private boolean isPlayerTooFar(String objectif) {
@@ -85,9 +131,9 @@ public class Vue_Quete_Force extends AbstractQueteActivity {
         Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(new Criteria(), true));
         String typeArbre = "";
         if (objectif.equals("Glands"))
-            typeArbre = "Chene";
+            typeArbre = "Chêne";
         else if (objectif.equals("Aiguilles"))
-            typeArbre = "Conifere";
+            typeArbre = "Conifère";
         else if (objectif.equals("Pommes de pins"))
             typeArbre = "Pin";
         else if (objectif.equals("Feuilles d'érable"))
@@ -110,7 +156,7 @@ public class Vue_Quete_Force extends AbstractQueteActivity {
     private void terminerQuete(QueteForce queteCourante) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(Vue_Quete_Force.this);
-        builder.setMessage("Vous avez réussi cette quête")
+        builder.setMessage("Tu as réussi cette quête !")
                 .setTitle("Bravo")
                 .setPositiveButton("Retour à la carte", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
@@ -120,7 +166,6 @@ public class Vue_Quete_Force extends AbstractQueteActivity {
 
         AlertDialog dialog = builder.create();
         dialog.show();
-
 
         Ecureuil ecureuil = Controleur.getEcureuil();
         ecureuil.setAReussi(queteCourante.getQueteId());

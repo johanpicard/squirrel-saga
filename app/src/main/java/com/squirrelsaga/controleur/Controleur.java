@@ -43,34 +43,45 @@ public class Controleur {
         objetsARecup.add("Pommes de pins");
         objetsARecup.add("Feuilles d'érable");
         Log.i("SSAGA", "Setting up quests");
-        int[] objets = {5,0,0,0};
-        AbstractQuete queteForce = new QueteForce(0,"Bouger des troncs", 0,0,0,"Elle est là !",45.7767953, 4.8482761, 10, 10,objets);
+        int[] objets = {3,2,0,0};
+        AbstractQuete queteForce = new QueteForce(0,"Construire son nid", 0,0,0,"Aller chercher de quoi construire un nid",45.7767953, 4.8482761, 10, 10,objets);
         queteForce.save();
         Log.i("SSAGA", queteForce.toString());
 
-        AbstractQuete queteVitesse = new QueteVitesse(1,"Manger des noisettes",1,0,0,"Miam", 45.7813447, 4.8513660, 10, 10);
-        Log.i("SSAGA", queteVitesse.toString());
-        queteVitesse.save();
+        AbstractQuete queteVitesse0 = new QueteVitesse(1,"Manger des noisettes",0,0,0,"Ton écureuil a faim, dépêche toi !", 45.7813447, 4.8513660, 10, 10);
+        Log.i("SSAGA", queteVitesse0.toString());
+        queteVitesse0.save();
 
-        AbstractQuete quetePrincipale0 = new QueteForce(2,"Devenir un guerrier",1,0,0,"Miam", 45.7853447, 4.8563660, 10, 10,objets);
+        AbstractQuete queteVitesse1 = new QueteVitesse(2,"Aller à l'Érable de Montpellier",0,0,0,"Vite !",  45.779831, 4.857700, 10, 10);
+        // destination : 45.78066, 4.856438
+        // temps = 3 min
+        Log.i("SSAGA", queteVitesse1.toString());
+        queteVitesse1.save();
+
+        AbstractQuete quetePrincipale0 = new QueteForce(3,"Porter des branches",0,0,0,"Rend ton écureuil plus fort !", 45.7853447, 4.8563660, 10, 10,objets);
         Log.i("SSAGA", quetePrincipale0.toString());
         quetePrincipale0.save();
 
-        AbstractQuete quetePrincipale1 = new QueteForce(3,"Sauver la princesse",1,0,0,"Miam", 45.7853447, 4.8563660, 10, 10,objets);
+        AbstractQuete quetePrincipale1 = new QueteForce(4,"Sauver la princesse",0,0,0,"Elle est là !", 45.7853447, 4.8563660, 10, 10,objets);
         Log.i("SSAGA", quetePrincipale1.toString());
         quetePrincipale1.setPrerequis(quetePrincipale0.getQueteId());
         quetePrincipale1.save();
 
-
-        QueteIntelligence queteIntelligence = new QueteIntelligence(4,"Résoudre l'énigme du hibou",1,0,0,"Trop cool !", 45.7760769,	4.8562584, 10,10,
+        QueteIntelligence queteIntelligence = new QueteIntelligence(5,"Résoudre l'énigme du hibou",1,0,0,"Rend ton écureuil plus intelligent !", 45.7760769, 4.8562584, 10,10,
                 "Quelle est la couleur du cheval blanc d'Henri IV?","Blanc");
         queteIntelligence.save();
         Log.i("SSAGA", queteIntelligence.toString());
 
-        AbstractQuete queteIntelligence2 = new QueteIntelligence(5,"Résoudre l'autre énigme",1,0,0,"Trop cool !", 45.7960769,	4.8662584, 10,10,
-                "Quelle est la couleur du cheval noir d'Henri IV?","noir");
-        queteIntelligence2.setPrerequis(queteIntelligence.getQueteId());
+        AbstractQuete queteIntelligence2 = new QueteIntelligence(6,"L'Érable de Montpellier",0,0,0,"Devine le diamètre de son tronc !", 45.780666, 4.856438, 10,10,
+                "Quel est, en mètres, le diamètre de cet arbre ?","5");
         queteIntelligence2.save();
+        Log.i("SSAGA", queteIntelligence2.toString());
+
+        AbstractQuete queteIntelligence3 = new QueteIntelligence(7,"Il se porte comme un charme",2,0,0,"Mais qui est-il ?", 45.784153, 4.856175, 10,10,
+                "Quel est le nom de cet arbre ?","Charme");
+        queteIntelligence3.setPrerequis(queteIntelligence2.getQueteId());
+        queteIntelligence3.save();
+        Log.i("SSAGA", queteIntelligence3.toString());
 
 
         Log.i("SSAGA", queteIntelligence2.toString());
@@ -119,6 +130,8 @@ public class Controleur {
         arbre = new Arbre(1,"Le Sequoia Gigantea", 45.781227, 4.848895, 5,"Conifère");
         arbre.save();
         arbre = new Arbre(1,"Le Tulipier de Virginie", 45.777915, 4.846491, 5,"Conifère");
+        arbre.save();
+        arbre = new Arbre(42,"Le Point de Rendez-vous", 45.779831, 4.857700, 5,"Chêne");
         arbre.save();
 
     }
