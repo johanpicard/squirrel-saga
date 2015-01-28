@@ -69,7 +69,8 @@ public class Vue_Quete_Intelligence extends AbstractQueteActivity {
                         public void onClick(DialogInterface dialog, int id) {
                             finish();
                         }
-                    });
+                    })
+                    .setCancelable(false);
 
             AlertDialog dialog = builder.create();
             dialog.show();
@@ -91,7 +92,8 @@ public class Vue_Quete_Intelligence extends AbstractQueteActivity {
                             // cancel the alert box and put a Toast to the user
                             dialog.cancel();
                         }
-                    });
+                    })
+            .setCancelable(false);
 
                 AlertDialog dialog = builder.create();
             dialog.show();
