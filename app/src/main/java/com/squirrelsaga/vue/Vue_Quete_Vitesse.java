@@ -89,12 +89,17 @@ public class Vue_Quete_Vitesse extends AbstractQueteActivity implements OnMapRea
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Tu as réussi la quête dans le temps imparti !")
                 .setTitle("Bravo !")
-                .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                        finish();
-                    }
-                });
+                .setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                finish();
+            }
+        }).setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                finish();
+            }
+        });
 
         QueteVitesse quete = getActiveQuest();
         Ecureuil ecureuil = Controleur.getEcureuil();
@@ -115,9 +120,15 @@ public class Vue_Quete_Vitesse extends AbstractQueteActivity implements OnMapRea
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Tu n'as pas été assez rapide.")
                 .setTitle("Oh non !")
-                .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.cancel();        finish();
+                .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        finish();
+                    }
+                }).setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                finish();
             }
         });
 
