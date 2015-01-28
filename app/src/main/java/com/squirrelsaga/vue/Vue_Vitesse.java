@@ -23,7 +23,11 @@ public class Vue_Vitesse extends Fragment {
                 R.layout.fragment_vue_vitesse, container, false);
 
         progressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
-        progressBar.setProgress(Controleur.getEcureuil().getVitesse());
+
+        if (Controleur.getEcureuil().getVitesse() < 100)
+            progressBar.setProgress(Controleur.getEcureuil().getVitesse());
+        else
+            progressBar.setProgress(100);
 
         return rootView;
     }

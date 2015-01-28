@@ -23,7 +23,10 @@ public class Vue_Force extends Fragment {
 
         progressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
 
-        progressBar.setProgress(Controleur.getEcureuil().getForce());
+        if (Controleur.getEcureuil().getForce() < 100)
+            progressBar.setProgress(Controleur.getEcureuil().getForce());
+        else
+            progressBar.setProgress(100);
 
         return rootView;
     }

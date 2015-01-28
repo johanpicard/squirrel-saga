@@ -23,8 +23,10 @@ public class Vue_Intelligence extends Fragment {
 
         progressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
 
-        progressBar.setProgress(Controleur.getEcureuil().getIntelligence());
-
+        if (Controleur.getEcureuil().getIntelligence() < 100)
+            progressBar.setProgress(Controleur.getEcureuil().getIntelligence());
+        else
+            progressBar.setProgress(100);
         return rootView;
     }
 
