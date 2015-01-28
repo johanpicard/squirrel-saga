@@ -89,8 +89,21 @@ public class Slide_ecureuil extends FragmentActivity {
             }
         });
 
+        //Application de la police aux textes de la popup
         TextView textInfo = (TextView) popup_layout.findViewById(R.id.textInfo);
         textInfo.setTypeface(font);
+        TextView textView = (TextView) popup_layout.findViewById(R.id.textView);
+        textView.setTypeface(font);
+        textView = (TextView) popup_layout.findViewById(R.id.textView2);
+        textView.setTypeface(font);
+        textView = (TextView) popup_layout.findViewById(R.id.textView3);
+        textView.setTypeface(font);
+        textView = (TextView) popup_layout.findViewById(R.id.textView4);
+        textView.setTypeface(font);
+        textView = (TextView) popup_layout.findViewById(R.id.textView5);
+        textView.setTypeface(font);
+        textView = (TextView) popup_layout.findViewById(R.id.textView6);
+        textView.setTypeface(font);
 
         int location[] = new int[2];
         // Get the View's(the one that was clicked in the Fragment) location
