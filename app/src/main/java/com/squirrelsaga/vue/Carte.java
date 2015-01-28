@@ -2,7 +2,9 @@ package com.squirrelsaga.vue;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,6 +15,7 @@ import android.graphics.Paint;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.IBinder;
 import android.support.v4.app.FragmentActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -29,6 +32,7 @@ import com.squirrelsaga.modele.Ecureuil;
 import com.squirrelsaga.modele.QueteForce;
 import com.squirrelsaga.modele.QueteIntelligence;
 import com.squirrelsaga.modele.QueteVitesse;
+import com.squirrelsaga.service.LocationService;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -45,7 +49,7 @@ import java.util.Map;
 public class Carte extends FragmentActivity implements OnMapReadyCallback {
     public final static String QUETE_ID = "com.squirrelsaga.QUETE_ID";
     //TODO : changer pour la release
-    public final static float MAX_DISTANCE_BETWEEN_QUEST_AND_PLAYER = 5000;
+    public final static float MAX_DISTANCE_BETWEEN_QUEST_AND_PLAYER = 50000;
 
     private AbstractQuete queteSelected = null;
     Map<String, AbstractQuete> markersQuetes = new HashMap<String, AbstractQuete>();
@@ -58,6 +62,7 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
         super.onCreate(savedInstanceState);
         Log.i("SSAGA", "Create Carte");
         setContentView(R.layout.activity_carte);
+
 
 
         button_go = (Button) findViewById(R.id.map_button_go);
@@ -86,6 +91,8 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
     protected void onStart() {
         super.onStart();
         Log.i("SSAGA", "Start Carte");
+
+
     }
 
 
@@ -249,7 +256,10 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
     private float getDistanceBetweenQuestAndPlayer(AbstractQuete quete) {
         LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(new Criteria(), true));
-        float distance = location.distanceTo(quete.getLocation());
+        float distance = 10000;
+        if(location!=null){
+            distance = location.distanceTo(quete.getLocation());
+        }
         Log.i("SSAGA", "Distance de la quete : "+String.format("%.2f", distance));
         return distance;
     }
