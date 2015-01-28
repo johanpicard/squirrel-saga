@@ -40,14 +40,26 @@
             style="@style/informationGris"
             android:gravity="center"/>
 
-        <EditText
-            android:layout_width="fill_parent"
+        <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:gravity="center"
+            android:layout_gravity="center">
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/edit_reponse"
-            android:imeOptions="actionDone"
-            android:minWidth="@dimen/abc_config_prefDialogWidth" />
-
+            android:inputType="textPersonName|textCapSentences"
+            android:hint="Réponse"
+            android:gravity="center"
+            android:minWidth="@dimen/abc_config_prefDialogWidth"
+            android:textColor="@color/logo_color"
+            android:textColorHint="#4F4F4F"
+            android:textSize="35sp"
+            android:background="#FFFFFF"
+            android:padding="5dp"/>
+        </RelativeLayout>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="0dp"
