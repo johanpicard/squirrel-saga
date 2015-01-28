@@ -48,6 +48,9 @@ public class Controleur {
         queteForce.save();
         Log.i("SSAGA", queteForce.toString());
 
+        AbstractQuete queteVitesse = new QueteVitesse(1,"Manger des noisettes",1,0,0,"Miam", 45.7813447, 4.8513660, 10, 10,46.7813447, 4.8513660,10);
+        Log.i("SSAGA", queteVitesse.toString());
+        queteVitesse.save();
         AbstractQuete queteVitesse0 = new QueteVitesse(1,"Manger des noisettes",0,0,0,"Ton écureuil a faim, dépêche toi !", 45.7813447, 4.8513660, 10, 10,45.7813447, 4.8513660);
         Log.i("SSAGA", queteVitesse0.toString());
         queteVitesse0.save();

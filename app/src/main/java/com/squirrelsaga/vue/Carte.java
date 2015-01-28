@@ -39,6 +39,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -259,6 +260,8 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
         float distance = 10000;
         if(location!=null){
             distance = location.distanceTo(quete.getLocation());
+        }else{
+            Toast.makeText(this, "Position GPS introuvable", Toast.LENGTH_LONG).show();
         }
         Log.i("SSAGA", "Distance de la quete : "+String.format("%.2f", distance));
         return distance;

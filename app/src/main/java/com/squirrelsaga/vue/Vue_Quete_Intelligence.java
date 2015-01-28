@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -36,6 +37,10 @@ public class Vue_Quete_Intelligence extends AbstractQueteActivity {
         questionText.setTypeface(font);
         TextView text_info = (TextView)findViewById(R.id.text_info);
         text_info.setTypeface(font);
+        Button btnVerifier = (Button)findViewById(R.id.btnVerifier);
+        btnVerifier.setTypeface(font);
+        EditText reponse = (EditText)findViewById(R.id.edit_reponse);
+        reponse.setTypeface(font);
     }
 
     /**
@@ -66,7 +71,8 @@ public class Vue_Quete_Intelligence extends AbstractQueteActivity {
                         public void onClick(DialogInterface dialog, int id) {
                             finish();
                         }
-                    });
+                    })
+                    .setCancelable(false);
 
             AlertDialog dialog = builder.create();
             dialog.show();
@@ -88,7 +94,8 @@ public class Vue_Quete_Intelligence extends AbstractQueteActivity {
                             // cancel the alert box and put a Toast to the user
                             dialog.cancel();
                         }
-                    });
+                    })
+            .setCancelable(false);
 
                 AlertDialog dialog = builder.create();
             dialog.show();

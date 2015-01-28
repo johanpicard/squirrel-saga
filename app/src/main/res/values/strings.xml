@@ -17,7 +17,8 @@
     <string name="quete_vitesse">Va vite à l\'endroit indiqué sur ta carte !</string>
     <string name="text_button_commencer">Commencer</string>
     <string name="text_button_valider">OK !</string>
-    <string name="title_activity_quete__intelligence">Quete_Intelligence</string>
-    <string name="title_activity_quete_vitesse">quete_vitesse</string>
+    <string name="title_activity_quete__intelligence">Quete Intelligence</string>
+    <string name="title_activity_quete_vitesse">Quete Vitesse</string>
+    <string name="title_activity_quete_force">Quete Force</string>
 
 </resources>
