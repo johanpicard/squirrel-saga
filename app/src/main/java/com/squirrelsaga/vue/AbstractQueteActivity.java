@@ -2,6 +2,7 @@ package com.squirrelsaga.vue;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -9,7 +10,7 @@ import android.view.MenuItem;
 
 import com.squirrelsaga.modele.AbstractQuete;
 
-public abstract class AbstractQueteActivity extends ActionBarActivity {
+public abstract class AbstractQueteActivity extends FragmentActivity {
 
 
     protected long queteId;

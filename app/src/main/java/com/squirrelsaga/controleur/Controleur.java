@@ -131,8 +131,6 @@ public class Controleur {
         arbre.save();
         arbre = new Arbre(1,"Le Tulipier de Virginie", 45.777915, 4.846491, 5,"Conifère");
         arbre.save();
-        arbre = new Arbre(42,"Le Point de Rendez-vous", 45.779831, 4.857700, 5,"Chêne");
-        arbre.save();
 
     }
 
