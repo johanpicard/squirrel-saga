@@ -65,7 +65,7 @@ public class Vue_Quete_Intelligence extends AbstractQueteActivity {
         {
             //On informe l'utilisateur de la réussite
             AlertDialog.Builder builder = new AlertDialog.Builder(Vue_Quete_Intelligence.this);
-            builder.setMessage("Vous avez réussi cette quête")
+            builder.setMessage("Tu as réussi cette quête !")
                     .setTitle("Bravo")
                     .setPositiveButton("Retour à la carte", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
@@ -87,8 +87,8 @@ public class Vue_Quete_Intelligence extends AbstractQueteActivity {
         }else{
             //On informe l'utilisateur de l'échec, il peut réasser
             AlertDialog.Builder builder = new AlertDialog.Builder(Vue_Quete_Intelligence.this);
-            builder.setMessage("Vous n'avez pas saisi la bonne réponse, vérifiez l'ortographe, ou proposez une autre réponse. ")
-                    .setTitle("Perdu").
+            builder.setMessage("Mauvaise réponse. Vérifie l'ortographe, ou propose une autre réponse ! ")
+                    .setTitle("Raté").
                     setNegativeButton("Ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             // cancel the alert box and put a Toast to the user
@@ -100,10 +100,5 @@ public class Vue_Quete_Intelligence extends AbstractQueteActivity {
                 AlertDialog dialog = builder.create();
             dialog.show();
         }
-    }
-
-    public void retourNid(View view) {
-        Intent intent = new Intent(this, Slide_ecureuil.class);
-        startActivity(intent);
     }
 }
