@@ -14,7 +14,6 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -41,95 +40,62 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * Carte des quêtes
+ */
 public class Carte extends FragmentActivity implements OnMapReadyCallback {
     public final static String QUETE_ID = "com.squirrelsaga.QUETE_ID";
     //TODO : changer pour la release
     private final static float MAX_DISTANCE_BETWEEN_QUEST_AND_PLAYER = 50000;
-
-    private AbstractQuete queteSelected = null;
     private final Map<String, AbstractQuete> markersQuetes = new HashMap<>();
+    private AbstractQuete queteSelected = null;
     private Button button_go;
-    private Ecureuil ecureuil;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i("SSAGA", "Create Carte");
         setContentView(R.layout.activity_carte);
-
-
-
         button_go = (Button) findViewById(R.id.map_button_go);
 
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        Log.i("SSAGA", "Pause Carte");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.i("SSAGA", "Destroy Carte");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.i("SSAGA", "Stop Carte");
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.i("SSAGA", "Start Carte");
-
-
-    }
-
-
-
-    @Override
     protected void onResume() {
         super.onResume();
-        Log.i("SSAGA", "Resume");
+
         MapFragment mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
 
-        @Override
+    @Override
     public void onMapReady(GoogleMap map) {
 
+        configureMapOptions(map);
+        getQuestsFromDatabaseAndShowThemOnMap(map);
+
+    }
+
+    /**
+     * Initialise les paramètres de la carte
+     */
+    private void configureMapOptions(GoogleMap map) {
         map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         map.setMyLocationEnabled(true);
         map.getUiSettings().setCompassEnabled(true);
         map.getUiSettings().setMapToolbarEnabled(false);
-
-        ecureuil = Controleur.getEcureuil();    
-            
-        setupCustomInfoWindows(map);
-
-        showQuestsOnMap(map);
-        map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(45.7791898, 4.8533830)));
-        map.moveCamera(CameraUpdateFactory.zoomTo(15));
 
         map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
 
             @Override
             public boolean onMarkerClick(Marker marker) {
 
-                selectQuete(markersQuetes.get(marker.getId()));
+                selectQuest(markersQuetes.get(marker.getId()));
                 return false;
             }
-        })        ;
-    }
+        });
 
-    private void setupCustomInfoWindows(GoogleMap map) {
         map.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
             @Override
             public View getInfoWindow(Marker marker) {
@@ -138,9 +104,9 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
 
             @Override
             public View getInfoContents(Marker marker) {
-
+                Ecureuil ecureuil = Controleur.getEcureuil();
                 ViewGroup parent = (ViewGroup) findViewById(R.id.map);
-                View v = getLayoutInflater().inflate(R.layout.infobulle_quete,parent,false );
+                View v = getLayoutInflater().inflate(R.layout.infobulle_quete, parent, false);
                 AbstractQuete quete = markersQuetes.get(marker.getId());
 
                 ((TextView) v.findViewById(R.id.infobulle_quete_text_titre)).setText(quete.getTitre());
@@ -150,44 +116,57 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
                 return v;
             }
         });
+
+        map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(45.7791898, 4.8533830)));
+        map.moveCamera(CameraUpdateFactory.zoomTo(15));
     }
 
-    private void showQuestsOnMap(GoogleMap map) {
+    /**
+     * Place les marqueurs de quêtes sur la carte
+     */
+    private void getQuestsFromDatabaseAndShowThemOnMap(GoogleMap map) {
 
         map.clear();
         Resources resources = getResources();
-        
 
         List<AbstractQuete> quetes = new ArrayList<>();
-
         quetes.addAll(AbstractQuete.listAll(QueteIntelligence.class));
         quetes.addAll(AbstractQuete.listAll(QueteForce.class));
         quetes.addAll(AbstractQuete.listAll(QueteVitesse.class));
 
         for (AbstractQuete quete : quetes) {
-            Log.i("SSAGA", quete.getTitre()+" "+quete.getStatut(ecureuil));
-            int iconeId = resources.getIdentifier(quete.getIcone(), "drawable", getPackageName());
-
-            if(quete.getStatut(ecureuil).equals(AbstractQuete.Statut.REUSSIE) ||
-                    quete.getStatut(ecureuil).equals(AbstractQuete.Statut.PREREQUIS_INSATISFAIT)){
-                continue;
-            }
-
-            Bitmap icone = BitmapFactory.decodeResource(resources, iconeId);
-            if (quete.getStatut(ecureuil).equals(AbstractQuete.Statut.COMPETENCES_INSUFFISANTES)) {
-                icone = convertToGrayscale(icone);
-            }
-
-            Marker marker = map.addMarker(new MarkerOptions()
-                    .position(new LatLng(quete.latitude, quete.longitude))
-                    .title(quete.getStatut(ecureuil) + " - " + quete.titre)
-                    .snippet(quete.getTexte())
-                    .icon(BitmapDescriptorFactory.fromBitmap(icone)));
-            markersQuetes.put(marker.getId(), quete);
-
+            addQuestToMap(map, resources, quete);
         }
     }
 
+    /**
+     * Place un marqueur de quête sur la carte
+     */
+    private void addQuestToMap(GoogleMap map, Resources resources, AbstractQuete quete) {
+        int iconeId = resources.getIdentifier(quete.getIcone(), "drawable", getPackageName());
+        Ecureuil ecureuil = Controleur.getEcureuil();
+
+        if (quete.getStatut(ecureuil).equals(AbstractQuete.Statut.REUSSIE) ||
+                quete.getStatut(ecureuil).equals(AbstractQuete.Statut.PREREQUIS_INSATISFAIT)) {
+            return;
+        }
+
+        Bitmap icone = BitmapFactory.decodeResource(resources, iconeId);
+        if (quete.getStatut(ecureuil).equals(AbstractQuete.Statut.COMPETENCES_INSUFFISANTES)) {
+            icone = convertToGrayscale(icone);
+        }
+
+        Marker marker = map.addMarker(new MarkerOptions()
+                .position(new LatLng(quete.latitude, quete.longitude))
+                .title(quete.getStatut(ecureuil) + " - " + quete.titre)
+                .snippet(quete.getTexte())
+                .icon(BitmapDescriptorFactory.fromBitmap(icone)));
+        markersQuetes.put(marker.getId(), quete);
+    }
+
+    /**
+     * Convertit un bitmap en nuances de gris
+     */
     private Bitmap convertToGrayscale(Bitmap icone) {
 
         ColorMatrix matrix = new ColorMatrix();
@@ -209,7 +188,11 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
         return iconeNB;
     }
 
-    private void selectQuete(AbstractQuete quete) {
+    /**
+     * Sélectionner une quête lorsque le joueur clique sur son marqueur
+     */
+    private void selectQuest(AbstractQuete quete) {
+        Ecureuil ecureuil = Controleur.getEcureuil();
         queteSelected = quete;
         if (quete.getStatut(ecureuil).equals(AbstractQuete.Statut.DISPONIBLE)) {
             button_go.setText("Commencer la quête !");
@@ -222,9 +205,12 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
 
     }
 
+    /**
+     * Lance la quête sélectionnée
+     */
     @SuppressWarnings("UnusedParameters")
-    public void startQuest(View view) {
-        if(queteSelected==null){
+    public void startSelectedQuest(View view) {
+        if (queteSelected == null) {
             return;
         }
         if (isPlayerTooFar(queteSelected)) {
@@ -247,24 +233,32 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
         }
     }
 
+    /**
+     * Vérifie si le joueur est trop loin pour lancer une quête
+     */
     private boolean isPlayerTooFar(AbstractQuete quete) {
         float distance = getDistanceBetweenQuestAndPlayer(quete);
         return distance >= MAX_DISTANCE_BETWEEN_QUEST_AND_PLAYER;
     }
 
+    /**
+     * Obtient la distance entre le joueur et une quête
+     */
     private float getDistanceBetweenQuestAndPlayer(AbstractQuete quete) {
         LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(new Criteria(), true));
         float distance = 10000;
-        if(location!=null){
+        if (location != null) {
             distance = location.distanceTo(quete.getLocation());
-        }else{
+        } else {
             Toast.makeText(this, "Position GPS introuvable", Toast.LENGTH_LONG).show();
         }
-        Log.i("SSAGA", "Distance de la quete : "+String.format("%.2f", distance));
         return distance;
     }
 
+    /**
+     * Indique au joueur qu'il est trop loin pour lancer une quête
+     */
     private void showTooFarDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Tu es trop loin du départ de la quête.")
