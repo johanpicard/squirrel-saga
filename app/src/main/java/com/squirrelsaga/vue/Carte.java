@@ -1,10 +1,7 @@
 package com.squirrelsaga.vue;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ComponentName;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,8 +12,14 @@ import android.graphics.Paint;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
-import android.os.IBinder;
+import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -32,14 +35,6 @@ import com.squirrelsaga.modele.Ecureuil;
 import com.squirrelsaga.modele.QueteForce;
 import com.squirrelsaga.modele.QueteIntelligence;
 import com.squirrelsaga.modele.QueteVitesse;
-import com.squirrelsaga.service.LocationService;
-
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -50,10 +45,10 @@ import java.util.Map;
 public class Carte extends FragmentActivity implements OnMapReadyCallback {
     public final static String QUETE_ID = "com.squirrelsaga.QUETE_ID";
     //TODO : changer pour la release
-    public final static float MAX_DISTANCE_BETWEEN_QUEST_AND_PLAYER = 50000;
+    private final static float MAX_DISTANCE_BETWEEN_QUEST_AND_PLAYER = 50000;
 
     private AbstractQuete queteSelected = null;
-    Map<String, AbstractQuete> markersQuetes = new HashMap<String, AbstractQuete>();
+    private final Map<String, AbstractQuete> markersQuetes = new HashMap<>();
     private Button button_go;
     private Ecureuil ecureuil;
 
@@ -143,7 +138,9 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
 
             @Override
             public View getInfoContents(Marker marker) {
-                View v = getLayoutInflater().inflate(R.layout.infobulle_quete, null);
+
+                ViewGroup parent = (ViewGroup) findViewById(R.id.map);
+                View v = getLayoutInflater().inflate(R.layout.infobulle_quete,parent,false );
                 AbstractQuete quete = markersQuetes.get(marker.getId());
 
                 ((TextView) v.findViewById(R.id.infobulle_quete_text_titre)).setText(quete.getTitre());
@@ -161,7 +158,7 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
         Resources resources = getResources();
         
 
-        List<AbstractQuete> quetes = new ArrayList<AbstractQuete>();
+        List<AbstractQuete> quetes = new ArrayList<>();
 
         quetes.addAll(AbstractQuete.listAll(QueteIntelligence.class));
         quetes.addAll(AbstractQuete.listAll(QueteForce.class));
@@ -171,13 +168,13 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
             Log.i("SSAGA", quete.getTitre()+" "+quete.getStatut(ecureuil));
             int iconeId = resources.getIdentifier(quete.getIcone(), "drawable", getPackageName());
 
-            if(quete.getStatut(ecureuil) == AbstractQuete.Statut.REUSSIE ||
-                    quete.getStatut(ecureuil) == AbstractQuete.Statut.PREREQUIS_INSATISFAIT){
+            if(quete.getStatut(ecureuil).equals(AbstractQuete.Statut.REUSSIE) ||
+                    quete.getStatut(ecureuil).equals(AbstractQuete.Statut.PREREQUIS_INSATISFAIT)){
                 continue;
             }
 
             Bitmap icone = BitmapFactory.decodeResource(resources, iconeId);
-            if (quete.getStatut(ecureuil) == AbstractQuete.Statut.COMPETENCES_INSUFFISANTES) {
+            if (quete.getStatut(ecureuil).equals(AbstractQuete.Statut.COMPETENCES_INSUFFISANTES)) {
                 icone = convertToGrayscale(icone);
             }
 
@@ -196,7 +193,7 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
         ColorMatrix matrix = new ColorMatrix();
         matrix.setSaturation(0);
 
-        Canvas c = new Canvas();
+
         Paint p = new Paint();
         ColorMatrix cm = new ColorMatrix();
 
@@ -214,10 +211,10 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
 
     private void selectQuete(AbstractQuete quete) {
         queteSelected = quete;
-        if (quete.getStatut(ecureuil) == AbstractQuete.Statut.DISPONIBLE) {
+        if (quete.getStatut(ecureuil).equals(AbstractQuete.Statut.DISPONIBLE)) {
             button_go.setText("Commencer la quête !");
             button_go.setEnabled(true);
-        } else if (quete.getStatut(ecureuil) == AbstractQuete.Statut.COMPETENCES_INSUFFISANTES) {
+        } else if (quete.getStatut(ecureuil).equals(AbstractQuete.Statut.COMPETENCES_INSUFFISANTES)) {
             button_go.setText("Compétences insuffisantes");
             button_go.setEnabled(false);
         }
@@ -225,15 +222,16 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
 
     }
 
+    @SuppressWarnings("UnusedParameters")
     public void startQuest(View view) {
         if(queteSelected==null){
             return;
         }
         if (isPlayerTooFar(queteSelected)) {
-            showTooFarDialog(this,queteSelected);
+            showTooFarDialog();
         } else {
 
-            Class targetActivity = null;
+            Class targetActivity;
             if (queteSelected instanceof QueteIntelligence) {
                 targetActivity = Vue_Quete_Intelligence.class;
             } else if (queteSelected instanceof QueteForce) {
@@ -267,8 +265,8 @@ public class Carte extends FragmentActivity implements OnMapReadyCallback {
         return distance;
     }
 
-    private void showTooFarDialog(Activity activity, AbstractQuete quete) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+    private void showTooFarDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Tu es trop loin du départ de la quête.")
                 .setTitle("Rapproche-toi !");
 
