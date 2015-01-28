@@ -1,14 +1,15 @@
 package com.squirrelsaga.vue;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -20,6 +21,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.squirrelsaga.controleur.Controleur;
+import com.squirrelsaga.modele.Ecureuil;
 import com.squirrelsaga.modele.QueteVitesse;
 
 import java.util.concurrent.TimeUnit;
@@ -30,6 +33,7 @@ public class Vue_Quete_Vitesse extends AbstractQueteActivity implements OnMapRea
     TextView textViewTime;
     TextView textViewDistance;
     private LocationManager locationManager;
+    private CounterClass timer;
 
 
     @Override
@@ -46,7 +50,7 @@ public class Vue_Quete_Vitesse extends AbstractQueteActivity implements OnMapRea
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 2, new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                checkForPlayerWin(location);
+                processNewLocation(location);
             }
 
             @Override
@@ -65,10 +69,62 @@ public class Vue_Quete_Vitesse extends AbstractQueteActivity implements OnMapRea
             }
         });
 
+
     }
 
-    private void checkForPlayerWin(Location location) {
-        textViewDistance.setText(String.format("%.0f",location.distanceTo(getActiveQuest().getObjectifLocation())));
+    private void processNewLocation(Location location) {
+        double distance = location.distanceTo(getActiveQuest().getObjectifLocation());
+        textViewDistance.setText(String.format("%.0f",distance)+" m");
+        if(distance < 30){
+            questSuccess();
+        }
+    }
+
+    public void testShortcut(View view) {
+        questSuccess();
+    }
+
+    private void questSuccess() {
+        timer.cancel();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Tu as réussi la quête dans le temps imparti !")
+                .setTitle("Bravo !")
+                .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                        finish();
+                    }
+                });
+
+        QueteVitesse quete = getActiveQuest();
+        Ecureuil ecureuil = Controleur.getEcureuil();
+        ecureuil.setAReussi(quete.getQueteId());
+        ecureuil.mange(quete.getNoisette());
+        ecureuil.vitesseLevelUp(quete.getRecompense());
+        ecureuil.save();
+        
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+
+
+    }
+
+    private void questFailure() {
+        timer.cancel();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Tu n'as pas été assez rapide.")
+                .setTitle("Oh non !")
+                .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();        finish();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+
     }
 
     /**
@@ -85,7 +141,7 @@ public class Vue_Quete_Vitesse extends AbstractQueteActivity implements OnMapRea
         }
         @Override
         public void onFinish() {
-            textViewTime.setText("Terminé.");
+            questFailure();
         }
         @Override
         public void onTick(long millisUntilFinished) {
@@ -122,7 +178,10 @@ public class Vue_Quete_Vitesse extends AbstractQueteActivity implements OnMapRea
                 .position(new LatLng(quete.latitude, quete.longitude))
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_speed)));
 
-        final CounterClass timer = new CounterClass(180000,1000);
+        timer = new CounterClass(quete.getObjectifTemps()*1000,1000);
         timer.start();
+
+
+        processNewLocation(quete.getLocation());
     }
 }

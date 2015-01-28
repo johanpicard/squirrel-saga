@@ -47,7 +47,8 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:background="#80000000" />
+            android:background="#80000000"
+            android:onClick="testShortcut" />
 
         <TextView
             android:textSize="30sp"
