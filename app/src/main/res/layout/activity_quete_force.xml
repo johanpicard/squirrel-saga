@@ -50,8 +50,8 @@
                 android:layout_weight="2"
                 android:id="@+id/text_a_ramasser1"
                 android:text="4/5"
-                style="@style/textStyleLogo"
-                android:gravity="center"/>
+                style="@style/textPetitLogo"
+                android:gravity="left|center_vertical"/>
         </LinearLayout>
         <Button
             android:layout_width="wrap_content"
@@ -88,8 +88,8 @@
                 android:layout_weight="2"
                 android:id="@+id/text_a_ramasser2"
                 android:text="0/5"
-                style="@style/textStyleLogo"
-                android:gravity="center"/>
+                style="@style/textPetitLogo"
+                android:gravity="left|center_vertical"/>
         </LinearLayout>
         <Button
             android:layout_width="wrap_content"

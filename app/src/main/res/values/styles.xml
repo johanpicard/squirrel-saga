@@ -44,6 +44,18 @@
         <item name="android:paddingRight">15dp</item>
     </style>
 
+    <style name="textPetitLogo" parent="@android:style/TextAppearance.Large">
+        <item name="android:textSize">40sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/logo_color</item>
+        <item name="android:shadowColor">@color/logo_shadow</item>
+        <item name="android:shadowDx">4</item>
+        <item name="android:shadowDy">4</item>
+        <item name="android:shadowRadius">1</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+    </style>
+
     <style name="information" parent="@android:style/TextAppearance.Medium">
         <item name="android:textSize">30sp</item>
         <item name="android:textStyle">bold</item>

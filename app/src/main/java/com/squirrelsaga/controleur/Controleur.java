@@ -43,46 +43,49 @@ public class Controleur {
 
         Log.i("SSAGA", "Setting up quests");
         int[] objets = {3,2};
-        AbstractQuete queteForce = new QueteForce(0,"Construire son nid", 0,0,0,"Aller chercher de quoi construire un nid",45.7767953, 4.8482761, 10, 10,objets);
-        queteForce.save();
-        Log.i("SSAGA", queteForce.toString());
+        AbstractQuete queteForce1 = new QueteForce(0,"Construire son nid", 0,0,0,"Aller chercher de quoi construire un nid",45.780035, 4.856392, 10, 10,objets);
+        queteForce1.save();
+        Log.i("SSAGA", queteForce1.toString());
 
-        AbstractQuete queteVitesse0 = new QueteVitesse(1,"Manger des noisettes",0,0,0,"Ton écureuil a faim, dépêche toi !", 45.7813447, 4.8513660, 10, 10,45.7813447, 4.8513660,15);
+        int[] objets1 = {2,1};
+        AbstractQuete queteForce2 = new QueteForce(1,"Construire son nid", 0,0,0,"Aller chercher de quoi construire un nid",45.7767953, 4.8482761, 10, 10,objets1);
+        queteForce2.save();
+        Log.i("SSAGA", queteForce2.toString());
+
+        AbstractQuete queteVitesse0 = new QueteVitesse(2,"Manger des noisettes",0,0,0,"Ton écureuil a faim, dépêche toi !", 45.7813447, 4.8513660, 10, 10,45.7813447, 4.8513660,15);
         Log.i("SSAGA", queteVitesse0.toString());
         queteVitesse0.save();
 
-        AbstractQuete queteVitesse1 = new QueteVitesse(2,"Aller à l'Érable de Montpellier",0,0,0,"Vite !",  45.779831, 4.857700, 10, 10,45.780666, 4.856438,3);
+        AbstractQuete queteVitesse1 = new QueteVitesse(3,"Aller à l'Érable de Montpellier",0,0,0,"Vite !",  45.779831, 4.857700, 10, 10,45.780666, 4.856438,3);
         Log.i("SSAGA", queteVitesse1.toString());
         queteVitesse1.save();
 
-        int[] objets2 = {2,1,0,0};
-        AbstractQuete quetePrincipale0 = new QueteForce(3,"Porter des branches",0,5,5,"Rend ton écureuil plus fort !", 45.7853447, 4.8563660, 10, 10,objets2);
+        int[] objets2 = {5,7};
+        AbstractQuete quetePrincipale0 = new QueteForce(4,"Porter des branches",0,5,5,"Rend ton écureuil plus fort !", 45.7853447, 4.8563660, 10, 10,objets2);
         Log.i("SSAGA", quetePrincipale0.toString());
         quetePrincipale0.save();
 
-        AbstractQuete quetePrincipale1 = new QueteVitesse(4,"Sauver la princesse",10,10,10,"Elle est là !", 45.7853447, 4.8563660, 10, 10,45.7767953, 4.8482761,10);
+        AbstractQuete quetePrincipale1 = new QueteVitesse(5,"Sauver la princesse",10,10,10,"Elle est là !", 45.7853447, 4.8563660, 10, 10,45.7767953, 4.8482761,10);
         Log.i("SSAGA", quetePrincipale1.toString());
         quetePrincipale1.setPrerequis(quetePrincipale0.getQueteId());
         quetePrincipale1.save();
 
-        QueteIntelligence queteIntelligence = new QueteIntelligence(5,"Résoudre l'énigme du hibou",5,0,0,"Rend ton écureuil plus intelligent !", 45.7760769, 4.8562584, 10,10,
+        QueteIntelligence queteIntelligence = new QueteIntelligence(6,"Résoudre l'énigme du hibou",5,0,0,"Rend ton écureuil plus intelligent !", 45.7760769, 4.8562584, 10,10,
                 "Quelle est la couleur du cheval blanc d'Henri IV?","Blanc");
         queteIntelligence.save();
         Log.i("SSAGA", queteIntelligence.toString());
 
-        AbstractQuete queteIntelligence2 = new QueteIntelligence(6,"L'Érable de Montpellier",0,0,0,"Devine le diamètre de son tronc !", 45.780666, 4.856438, 10,10,
+        AbstractQuete queteIntelligence2 = new QueteIntelligence(7,"L'Érable de Montpellier",0,0,0,"Devine le diamètre de son tronc !", 45.780666, 4.856438, 10,10,
                 "Quel est, en mètres, le diamètre de cet arbre ?","5");
         queteIntelligence2.save();
         Log.i("SSAGA", queteIntelligence2.toString());
 
-        AbstractQuete queteIntelligence3 = new QueteIntelligence(7,"Il se porte comme un charme",10,0,5,"Mais qui est-il ?", 45.784153, 4.856175, 10,10,
+        AbstractQuete queteIntelligence3 = new QueteIntelligence(8,"Il se porte comme un charme",10,0,5,"Mais qui est-il ?", 45.784153, 4.856175, 10,10,
                 "Quel est le nom de cet arbre ?","Charme");
         queteIntelligence3.setPrerequis(queteIntelligence2.getQueteId());
         queteIntelligence3.save();
         Log.i("SSAGA", queteIntelligence3.toString());
 
-
-        Log.i("SSAGA", queteIntelligence2.toString());
     }
 
     /**
