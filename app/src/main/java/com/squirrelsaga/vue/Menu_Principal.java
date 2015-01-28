@@ -1,8 +1,11 @@
 package com.squirrelsaga.vue;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.os.IBinder;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,7 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.squirrelsaga.controleur.Controleur;
-
+import com.squirrelsaga.service.LocationService;
 
 
 public class Menu_Principal extends ActionBarActivity {
@@ -23,9 +26,16 @@ public class Menu_Principal extends ActionBarActivity {
     TextView Logo2;
     Class<?> nextIntentClass;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.i("SSAGA", "Starting...");
+
+        Intent intent = new Intent(this, LocationService.class);
+        intent.setAction("startListening");
+        startService(intent);
+
 
         nextIntentClass = Slide_ecureuil.class;
         checkFirstLaunchAndSetupApplication();
@@ -97,5 +107,9 @@ public class Menu_Principal extends ActionBarActivity {
         editor.commit();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
 
+    }
 }

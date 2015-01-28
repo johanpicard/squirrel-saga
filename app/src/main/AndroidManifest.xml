@@ -73,6 +73,12 @@
             android:name=".Vue_Quete_Vitesse"
             android:label="@string/title_activity_quete_vitesse" >
         </activity>
+
+        <service
+            android:name="com.squirrelsaga.service.LocationService"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
     </application>
 
 </manifest>
