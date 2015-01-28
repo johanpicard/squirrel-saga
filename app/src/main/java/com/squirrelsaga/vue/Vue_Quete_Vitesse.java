@@ -195,12 +195,7 @@ public class Vue_Quete_Vitesse extends AbstractQueteActivity implements OnMapRea
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Tu as réussi la quête dans le temps imparti !")
                 .setTitle("Bravo !")
-                .setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        finish();
-                    }
-                }).setOnCancelListener(new DialogInterface.OnCancelListener() {
+                .setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
                 finish();
@@ -224,12 +219,7 @@ public class Vue_Quete_Vitesse extends AbstractQueteActivity implements OnMapRea
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Tu n'as pas été assez rapide.")
                 .setTitle("Oh non !")
-                .setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        finish();
-                    }
-                }).setOnCancelListener(new DialogInterface.OnCancelListener() {
+                .setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
                 finish();
