@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -36,6 +37,8 @@ public class Vue_Quete_Intelligence extends AbstractQueteActivity {
         questionText.setTypeface(font);
         TextView text_info = (TextView)findViewById(R.id.text_info);
         text_info.setTypeface(font);
+        Button btnVerifier = (Button)findViewById(R.id.btnVerifier);
+        btnVerifier.setTypeface(font);
     }
 
     /**
