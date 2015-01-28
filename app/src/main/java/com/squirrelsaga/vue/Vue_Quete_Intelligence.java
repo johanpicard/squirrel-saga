@@ -65,7 +65,7 @@ public class Vue_Quete_Intelligence extends AbstractQueteActivity {
         {
             //On informe l'utilisateur de la réussite
             AlertDialog.Builder builder = new AlertDialog.Builder(Vue_Quete_Intelligence.this);
-            builder.setMessage("Tu as réussi cette quête !")
+            builder.setMessage("Tu as réussi cette quête ! Tu as gagné "+ quete.getRecompense() + " points d'intelligence et " + quete.getNoisette() + " noisettes !")
                     .setTitle("Bravo")
                     .setPositiveButton("Retour à la carte", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {

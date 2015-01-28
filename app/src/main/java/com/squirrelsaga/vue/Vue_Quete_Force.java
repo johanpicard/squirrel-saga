@@ -87,9 +87,16 @@ public class Vue_Quete_Force extends AbstractQueteActivity {
      * @param view View
      */
     public void ramasserObjet1(View view){
-        if(tooFar1 == 1){
+        if (tooFar1 == -1){
+            LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+            Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(new Criteria(), true));
+            if (location != null) {
+                tooFar1 = isPlayerTooFar(objectif1, location);
+            }
+        }
+        if(tooFar1 == -1){
             AlertDialog.Builder builder = new AlertDialog.Builder(Vue_Quete_Force.this);
-            builder.setMessage("Il n'y a pas de "+ objectif1.toLowerCase() + " à proximité !")
+            builder.setMessage("Il n'y a pas de \""+ objectif1.toLowerCase() + "\" à proximité !")
                     .setTitle("Trop loin").
                     setNegativeButton("Ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
@@ -116,7 +123,14 @@ public class Vue_Quete_Force extends AbstractQueteActivity {
      * @param view View
      */
     public void ramasserObjet2(View view){
-        if(tooFar2 == 1){
+        if (tooFar2 == -1){
+            LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+            Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(new Criteria(), true));
+            if (location != null) {
+                tooFar2 = isPlayerTooFar(objectif2, location);
+            }
+        }
+        if(tooFar2 == -1){
             AlertDialog.Builder builder = new AlertDialog.Builder(Vue_Quete_Force.this);
             builder.setMessage("Il n'y a pas de \""+ objectif2.toLowerCase() + "\" à proximité !")
                     .setTitle("Trop loin").
@@ -197,7 +211,7 @@ public class Vue_Quete_Force extends AbstractQueteActivity {
     private void terminerQuete(QueteForce queteCourante) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(Vue_Quete_Force.this);
-        builder.setMessage("Tu as réussi cette quête !")
+        builder.setMessage("Tu as réussi cette quête ! Tu as gagné "+ queteCourante.getRecompense() + " points de force et " + queteCourante.getNoisette() + " noisettes !")
                 .setTitle("Bravo")
                 .setPositiveButton("Retour à la carte", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
@@ -214,5 +228,15 @@ public class Vue_Quete_Force extends AbstractQueteActivity {
         ecureuil.forceLevelUp(queteCourante.getRecompense());
         ecureuil.save();
 
+    }
+
+    /**
+     * Debug method for testing victory
+     *
+     */
+    @SuppressWarnings("UnusedParameters")
+    public void testShortcut(View view) {
+        QueteForce quete = getActiveQuest();
+        terminerQuete(quete);
     }
 }

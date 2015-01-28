@@ -9,6 +9,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -193,7 +194,8 @@ public class Vue_Quete_Vitesse extends AbstractQueteActivity implements OnMapRea
 
     private void displaySuccessDialogAndClose() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Tu as réussi la quête dans le temps imparti !")
+        QueteVitesse quete = getActiveQuest();
+        builder.setMessage("Tu as réussi la quête dans le temps imparti ! Tu as gagné "+ quete.getRecompense() + " points de vitesse et " + quete.getNoisette() + " noisettes !")
                 .setTitle("Bravo !")
                 .setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override

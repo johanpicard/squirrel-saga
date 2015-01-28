@@ -52,20 +52,20 @@ public class Controleur {
         queteForce2.save();
         Log.i("SSAGA", queteForce2.toString());
 
-        AbstractQuete queteVitesse0 = new QueteVitesse(2,"Manger des noisettes",0,0,0,"Ton écureuil a faim, dépêche toi !", 45.7813447, 4.8513660, 10, 10,45.7813447, 4.8513660,15);
+        AbstractQuete queteVitesse0 = new QueteVitesse(2,"Manger des noisettes",0,0,0,"Ton écureuil a faim, dépêche toi !", 45.7813447, 4.8513660, 10, 10, 45.7853447, 4.8563660,600);
         Log.i("SSAGA", queteVitesse0.toString());
         queteVitesse0.save();
 
-        AbstractQuete queteVitesse1 = new QueteVitesse(3,"Aller à l'Érable de Montpellier",0,0,0,"Vite !",  45.779831, 4.857700, 10, 10,45.780666, 4.856438,3);
+        AbstractQuete queteVitesse1 = new QueteVitesse(3,"Aller à l'Érable de Montpellier",0,0,0,"Vite !",  45.779831, 4.857700, 10, 10,45.780666, 4.856438,180);
         Log.i("SSAGA", queteVitesse1.toString());
         queteVitesse1.save();
 
         int[] objets2 = {5,7};
-        AbstractQuete quetePrincipale0 = new QueteForce(4,"Porter des branches",0,5,5,"Rend ton écureuil plus fort !", 45.7853447, 4.8563660, 10, 10,objets2);
+        AbstractQuete quetePrincipale0 = new QueteForce(4,"Quête principale : Porter des branches",0,5,5,"Rend ton écureuil plus fort pour pouvoir sauver la princesse !", 45.7853447, 4.8563660, 10, 10,objets2);
         Log.i("SSAGA", quetePrincipale0.toString());
         quetePrincipale0.save();
 
-        AbstractQuete quetePrincipale1 = new QueteVitesse(5,"Sauver la princesse",10,10,10,"Elle est là !", 45.7853447, 4.8563660, 10, 10,45.7767953, 4.8482761,10);
+        AbstractQuete quetePrincipale1 = new QueteVitesse(5,"Quête principale : Sauver la princesse",10,10,10,"Elle est là !", 45.776863, 4.853453, 10, 10,45.7767953, 4.8482761,480);
         Log.i("SSAGA", quetePrincipale1.toString());
         quetePrincipale1.setPrerequis(quetePrincipale0.getQueteId());
         quetePrincipale1.save();
@@ -75,8 +75,8 @@ public class Controleur {
         queteIntelligence.save();
         Log.i("SSAGA", queteIntelligence.toString());
 
-        AbstractQuete queteIntelligence2 = new QueteIntelligence(7,"L'Érable de Montpellier",0,0,0,"Devine le diamètre de son tronc !", 45.780666, 4.856438, 10,10,
-                "Quel est, en mètres, le diamètre de cet arbre ?","5");
+        AbstractQuete queteIntelligence2 = new QueteIntelligence(7,"L'Érable de Montpellier",0,0,0,"Un petit peu de sirop ?", 45.780666, 4.856438, 10,10,
+                "A partir de quel fluide le sirop d'érable est-il fabriqué ?","Sève");
         queteIntelligence2.save();
         Log.i("SSAGA", queteIntelligence2.toString());
 
@@ -139,7 +139,6 @@ public class Controleur {
      * Création d'un écureuil si c'est le premier lancement
      */
     private static void setupBob() {
-        //todo enlever pour la release
         Log.i("SSAGA", "Setting up Bob");
         ecureuil = new Ecureuil("Bob","");
         ecureuil.save();
