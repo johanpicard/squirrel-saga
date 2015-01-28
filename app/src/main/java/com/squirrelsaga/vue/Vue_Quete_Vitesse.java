@@ -144,7 +144,7 @@ public class Vue_Quete_Vitesse extends AbstractQueteActivity implements OnMapRea
      */
     private void addQuestMarker(GoogleMap map, QueteVitesse quete) {
         map.addMarker(new MarkerOptions()
-                .position(new LatLng(quete.latitude, quete.longitude))
+                .position(new LatLng(quete.getObjectifLocation().getLatitude(), quete.getObjectifLocation().getLongitude()))
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_speed)));
     }
 
