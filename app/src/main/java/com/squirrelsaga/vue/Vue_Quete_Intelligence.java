@@ -83,7 +83,7 @@ public class Vue_Quete_Intelligence extends AbstractQueteActivity {
             ecureuil.mange(quete.getNoisette());
             ecureuil.intelligenceLevelUp(quete.getRecompense());
             ecureuil.save();
-            //Ecureuil set Intelligence
+
         }else{
             //On informe l'utilisateur de l'échec, il peut réasser
             AlertDialog.Builder builder = new AlertDialog.Builder(Vue_Quete_Intelligence.this);

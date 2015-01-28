@@ -1,17 +1,20 @@
 package com.squirrelsaga.vue;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squirrelsaga.controleur.Controleur;
 import com.squirrelsaga.modele.AbstractQuete;
@@ -29,6 +32,8 @@ public class Vue_Quete_Force extends AbstractQueteActivity {
     private int valeur2 = 0;
     private int valeur1Courante = 0;
     private int valeur2Courante = 0;
+    private int tooFar1 = -1;
+    private int tooFar2 = -1;
 
     @Override
     /**
@@ -66,11 +71,12 @@ public class Vue_Quete_Force extends AbstractQueteActivity {
         Button btn_ramasser2 = (Button)findViewById(R.id.BtnRamasser2);
         btn_ramasser2.setTypeface(font);
 
+        setupLocationManager();
     }
 
     /**
      * Permet de récupérer la quête sélectionnée par l'utilisateur sur la carte
-     * @return QueteIntelligence
+     * @return QueteForce
      */
     protected QueteForce getActiveQuest() {
         return QueteForce.findById(QueteForce.class,queteId);
@@ -80,8 +86,8 @@ public class Vue_Quete_Force extends AbstractQueteActivity {
      * Permet de ramasser l'objet désiré si l'on est à portée
      * @param view View
      */
-    public void rammasserObjet1(View view){
-        if(isPlayerTooFar(objectif1)){
+    public void ramasserObjet1(View view){
+        if(tooFar1 == 1){
             AlertDialog.Builder builder = new AlertDialog.Builder(Vue_Quete_Force.this);
             builder.setMessage("Il n'y a pas de "+ objectif1.toLowerCase() + " à proximité !")
                     .setTitle("Trop loin").
@@ -92,7 +98,7 @@ public class Vue_Quete_Force extends AbstractQueteActivity {
                     });
             AlertDialog dialog = builder.create();
             dialog.show();
-        } else {
+        } else if(tooFar1 == 0) {
             QueteForce quete = getActiveQuest();
             if (valeur1Courante < valeur1) {
                 valeur1Courante++;
@@ -100,13 +106,19 @@ public class Vue_Quete_Force extends AbstractQueteActivity {
                     terminerQuete(quete);
                 }
             }
+        } else {
+            Toast.makeText(this, "Position GPS introuvable", Toast.LENGTH_LONG).show();
         }
     }
 
-    public void rammasserObjet2(View view){
-        if(isPlayerTooFar(objectif2)){
+    /**
+     * Permet de ramasser l'objet désiré si l'on est à portée
+     * @param view View
+     */
+    public void ramasserObjet2(View view){
+        if(tooFar2 == 1){
             AlertDialog.Builder builder = new AlertDialog.Builder(Vue_Quete_Force.this);
-            builder.setMessage("Il n'y a pas de "+ objectif2.toLowerCase() + " à proximité !")
+            builder.setMessage("Il n'y a pas de \""+ objectif2.toLowerCase() + "\" à proximité !")
                     .setTitle("Trop loin").
                     setNegativeButton("Ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
@@ -115,7 +127,7 @@ public class Vue_Quete_Force extends AbstractQueteActivity {
                     });
             AlertDialog dialog = builder.create();
             dialog.show();
-        } else {
+        } else if(tooFar1 == 0){
             QueteForce quete = getActiveQuest();
             if (valeur2Courante < valeur2) {
                 valeur2Courante++;
@@ -123,21 +135,42 @@ public class Vue_Quete_Force extends AbstractQueteActivity {
                     terminerQuete(quete);
                 }
             }
+        } else {
+            Toast.makeText(this, "Position GPS introuvable", Toast.LENGTH_LONG).show();
         }
+
     }
 
-    private boolean isPlayerTooFar(String objectif) {
-        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(new Criteria(), true));
+
+    /**
+     * Initialise le service de géolocalisation
+     */
+    private void setupLocationManager() {
+        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 2, new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                tooFar1 = isPlayerTooFar(objectif1, location);
+                tooFar2 = isPlayerTooFar(objectif2, location);
+            }
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+            }
+            @Override
+            public void onProviderEnabled(String provider) {
+            }
+            @Override
+            public void onProviderDisabled(String provider) {
+            }
+        });
+    }
+
+    private int isPlayerTooFar(String objectif, Location location) {
         String typeArbre = "";
         if (objectif.equals("Glands"))
             typeArbre = "Chêne";
         else if (objectif.equals("Aiguilles"))
             typeArbre = "Conifère";
-        else if (objectif.equals("Pommes de pins"))
-            typeArbre = "Pin";
-        else if (objectif.equals("Feuilles d'érable"))
-            typeArbre = "Erable";
 
         float minDistance = 9999999;
         float distance = 0;
@@ -151,9 +184,12 @@ public class Vue_Quete_Force extends AbstractQueteActivity {
                     minDistance = distance;
             }
             Log.i("SSAGA", "Distance de l'arbre de type " + typeArbre + " le plus proche : " + String.format("%.2f", minDistance));
-            return minDistance >= MAX_DISTANCE_BETWEEN_TREE_AND_PLAYER;
+            if (minDistance >= MAX_DISTANCE_BETWEEN_TREE_AND_PLAYER)
+                return 1;
+            else
+                return 0;
         } else {
-            return false;
+            return 0;
         }
 
     }

@@ -40,10 +40,9 @@ public class Controleur {
         objetsARecup = new ArrayList<>();
         objetsARecup.add("Glands");
         objetsARecup.add("Aiguilles");
-        objetsARecup.add("Pommes de pins");
-        objetsARecup.add("Feuilles d'érable");
+
         Log.i("SSAGA", "Setting up quests");
-        int[] objets = {3,2,0,0};
+        int[] objets = {3,2};
         AbstractQuete queteForce = new QueteForce(0,"Construire son nid", 0,0,0,"Aller chercher de quoi construire un nid",45.7767953, 4.8482761, 10, 10,objets);
         queteForce.save();
         Log.i("SSAGA", queteForce.toString());
@@ -140,7 +139,6 @@ public class Controleur {
         //todo enlever pour la release
         Log.i("SSAGA", "Setting up Bob");
         ecureuil = new Ecureuil("Bob","");
-        ecureuil.intelligenceLevelUp(3);
         ecureuil.save();
     }
 

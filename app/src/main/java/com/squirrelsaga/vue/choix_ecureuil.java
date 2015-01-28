@@ -51,6 +51,7 @@ public class choix_ecureuil extends ActionBarActivity {
                 Controleur.getEcureuil().setNom(nomInput.getText().toString());
                 Controleur.getEcureuil().save();
                 Intent intent = new Intent(choix_ecureuil.this, Slide_ecureuil.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });
