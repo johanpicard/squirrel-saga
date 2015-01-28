@@ -39,6 +39,8 @@ public class Vue_Quete_Intelligence extends AbstractQueteActivity {
         text_info.setTypeface(font);
         Button btnVerifier = (Button)findViewById(R.id.btnVerifier);
         btnVerifier.setTypeface(font);
+        EditText reponse = (EditText)findViewById(R.id.edit_reponse);
+        reponse.setTypeface(font);
     }
 
     /**
