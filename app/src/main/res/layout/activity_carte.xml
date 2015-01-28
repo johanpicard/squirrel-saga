@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:text="Choisis une quête sur la carte !"
         android:id="@+id/map_button_go"
-        android:onClick="startQuest"
+        android:onClick="startSelectedQuest"
         android:nestedScrollingEnabled="true"
         android:clickable="true"
         android:enabled="false"
