@@ -58,8 +58,8 @@ public class Vue_Quete_Force extends AbstractQueteActivity {
         TextView text_a_ramasser2 = (TextView)findViewById(R.id.text_a_ramasser2);
         text_a_ramasser2.setTypeface(font);
 
-        text_a_ramasser1.setText(objectif1 + " " + valeur1Courante + "/" + valeur1);
-        text_a_ramasser1.setText(objectif2 + " " + valeur2Courante + "/" + valeur2);
+        text_a_ramasser1.setText(objectif1 + "  " + valeur1Courante + "/" + valeur1);
+        text_a_ramasser2.setText(objectif2 + "  " + valeur2Courante + "/" + valeur2);
 
         Button btn_ramasser1 = (Button)findViewById(R.id.BtnRamasser1);
         btn_ramasser1.setTypeface(font);
@@ -144,13 +144,18 @@ public class Vue_Quete_Force extends AbstractQueteActivity {
 
         ArrayList<Location> positionArbres = Controleur.getPositionsArbres(typeArbre);
 
-        for (int i = 0; i < positionArbres.size(); i++){
-            distance = location.distanceTo(positionArbres.get(i));
-            if (distance < minDistance)
-                minDistance = distance;
+        if (positionArbres != null) {
+            for (int i = 0; i < positionArbres.size(); i++){
+                distance = location.distanceTo(positionArbres.get(i));
+                if (distance < minDistance)
+                    minDistance = distance;
+            }
+            Log.i("SSAGA", "Distance de l'arbre de type " + typeArbre + " le plus proche : " + String.format("%.2f", minDistance));
+            return minDistance >= MAX_DISTANCE_BETWEEN_TREE_AND_PLAYER;
+        } else {
+            return false;
         }
-        Log.i("SSAGA", "Distance de l'arbre de type " + typeArbre + " le plus proche : " + String.format("%.2f", minDistance));
-        return minDistance >= MAX_DISTANCE_BETWEEN_TREE_AND_PLAYER;
+
     }
 
     private void terminerQuete(QueteForce queteCourante) {
@@ -173,10 +178,5 @@ public class Vue_Quete_Force extends AbstractQueteActivity {
         ecureuil.forceLevelUp(queteCourante.getRecompense());
         ecureuil.save();
 
-    }
-
-    public void retourNid(View view) {
-        Intent intent = new Intent(this, Slide_ecureuil.class);
-        startActivity(intent);
     }
 }

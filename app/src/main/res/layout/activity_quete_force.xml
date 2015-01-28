@@ -101,15 +101,6 @@
             android:layout_gravity="center"
             android:onClick="ramasserObjet2"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="0.75"
-            android:text="Nid"
-            android:id="@+id/buttonNid"
-            android:onClick="retourNid"
-            style="@style/btnStyleOrange"
-            android:layout_gravity="left"/>
     </LinearLayout>
 </RelativeLayout>
 

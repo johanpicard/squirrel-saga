@@ -101,9 +101,4 @@ public class Vue_Quete_Intelligence extends AbstractQueteActivity {
             dialog.show();
         }
     }
-
-    public void retourNid(View view) {
-        Intent intent = new Intent(this, Slide_ecureuil.class);
-        startActivity(intent);
-    }
 }
