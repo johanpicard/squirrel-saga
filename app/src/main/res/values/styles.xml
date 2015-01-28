@@ -57,7 +57,7 @@
     </style>
 
     <style name="informationGris" parent="@android:style/TextAppearance.Medium">
-        <item name="android:textSize">60sp</item>
+        <item name="android:textSize">50sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">#4F4F4F</item>
         <item name="android:shadowColor">@color/logo_color</item>
