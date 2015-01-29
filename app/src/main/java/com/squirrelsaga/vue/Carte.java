@@ -46,7 +46,7 @@ import java.util.Map;
 public class Carte extends FragmentActivity implements OnMapReadyCallback {
     public final static String QUETE_ID = "com.squirrelsaga.QUETE_ID";
     //TODO : changer pour la release
-    private final static float MAX_DISTANCE_BETWEEN_QUEST_AND_PLAYER = 50000;
+    private final static float MAX_DISTANCE_BETWEEN_QUEST_AND_PLAYER = 30;
     private final Map<String, AbstractQuete> markersQuetes = new HashMap<>();
     private AbstractQuete queteSelected = null;
     private Button button_go;

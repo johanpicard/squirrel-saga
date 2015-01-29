@@ -37,18 +37,30 @@ public class QueteForce extends AbstractQuete {
         return "icon_strength";
     }
 
+    /**
+     * @return nom du premier objet à ramasser
+     */
     public String getObjectif1() {
         return objectif1;
     }
 
+    /**
+     * @return nombre du premier objet à ramasser
+     */
     public int getValeur1() {
         return valeur1;
     }
 
+    /**
+     * @return nom du deuxième objet à ramasser
+     */
     public String getObjectif2() {
         return objectif2;
     }
 
+    /**
+     * @return nombre du deuxième objet à ramasser
+     */
     public int getValeur2() {
         return valeur2;
     }

@@ -144,6 +144,11 @@ public class Controleur {
         ecureuil.save();
     }
 
+    /**
+     * Retourne la localisation de tous les arbres d'un type donné
+     * @param typeArbre le type d'arbre
+     * @return une liste de Location
+     */
     public static ArrayList<Location> getPositionsArbres(String typeArbre){
         List<Arbre> arbreConcernes = Arbre.find(Arbre.class, "type = ?", typeArbre);
         ArrayList<Location> listeRetournee = new ArrayList<Location>();

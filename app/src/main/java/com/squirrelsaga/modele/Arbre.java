@@ -12,7 +12,7 @@ public class Arbre extends SugarRecord<Arbre> {
     private double _arbre_posx;
     private double _arbre_posy;
     private double _arbre_rayon;
-    private String _arbre_type;
+    private String type;
 
     /**
      * Constructeur par défaut
@@ -35,7 +35,7 @@ public class Arbre extends SugarRecord<Arbre> {
         this._arbre_posx = _arbre_posx;
         this._arbre_posy = _arbre_posy;
         this._arbre_rayon = _arbre_rayon;
-        this._arbre_type = _arbre_type;
+        this.type = _arbre_type;
     }
 
     /**
@@ -51,7 +51,7 @@ public class Arbre extends SugarRecord<Arbre> {
         this._arbre_posx = _arbre_posx;
         this._arbre_posy = _arbre_posy;
         this._arbre_rayon = _arbre_rayon;
-        this._arbre_type = _arbre_type;
+        this.type = type;
     }
 
     public int get_id() {
@@ -95,11 +95,11 @@ public class Arbre extends SugarRecord<Arbre> {
     }
 
     public String get_arbre_type() {
-        return _arbre_type;
+        return type;
     }
 
     public void set_arbre_type(String _arbre_type) {
-        this._arbre_type = _arbre_type;
+        this.type = _arbre_type;
     }
 
 }

@@ -94,7 +94,7 @@ public class Vue_Quete_Force extends AbstractQueteActivity {
                 tooFar1 = isPlayerTooFar(objectif1, location);
             }
         }
-        if(tooFar1 == -1){
+        if(tooFar1 == 1){
             AlertDialog.Builder builder = new AlertDialog.Builder(Vue_Quete_Force.this);
             builder.setMessage("Il n'y a pas de \""+ objectif1.toLowerCase() + "\" à proximité !")
                     .setTitle("Trop loin").
@@ -130,7 +130,7 @@ public class Vue_Quete_Force extends AbstractQueteActivity {
                 tooFar2 = isPlayerTooFar(objectif2, location);
             }
         }
-        if(tooFar2 == -1){
+        if(tooFar2 == 1){
             AlertDialog.Builder builder = new AlertDialog.Builder(Vue_Quete_Force.this);
             builder.setMessage("Il n'y a pas de \""+ objectif2.toLowerCase() + "\" à proximité !")
                     .setTitle("Trop loin").
@@ -184,6 +184,12 @@ public class Vue_Quete_Force extends AbstractQueteActivity {
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0,0, locationListener);
     }
 
+    /**
+     * Teste si le joueur est trop loin d'un objectif (un type d'arbre)
+     * @param objectif l'objectif a atteindre (l'objet à rammasser, lié à un type d'arbre)
+     * @param location la localisationa actuelle du joueur
+     * @return
+     */
     private int isPlayerTooFar(String objectif, Location location) {
         String typeArbre = "";
         if (objectif.equals("Glands"))

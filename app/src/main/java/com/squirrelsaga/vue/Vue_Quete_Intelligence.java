@@ -71,8 +71,7 @@ public class Vue_Quete_Intelligence extends AbstractQueteActivity {
                         public void onClick(DialogInterface dialog, int id) {
                             finish();
                         }
-                    })
-                    .setCancelable(false);
+                    });
 
             AlertDialog dialog = builder.create();
             dialog.show();

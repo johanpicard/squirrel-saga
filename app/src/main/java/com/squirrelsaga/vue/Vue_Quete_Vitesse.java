@@ -34,6 +34,7 @@ public class Vue_Quete_Vitesse extends AbstractQueteActivity implements OnMapRea
     private TextView textViewTime;
     private TextView textViewDistance;
     private CounterClass questTimer;
+    private boolean success;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +106,7 @@ public class Vue_Quete_Vitesse extends AbstractQueteActivity implements OnMapRea
     private void updatePlayerLocation(Location location) {
         double distance = location.distanceTo(getActiveQuest().getObjectifLocation());
         textViewDistance.setText(String.format("%.0f", distance) + " m");
-        if (distance < 30) {
+        if (distance < 10 && !success) {
             questSuccess();
         }
     }
@@ -167,7 +168,7 @@ public class Vue_Quete_Vitesse extends AbstractQueteActivity implements OnMapRea
      */
     private void questSuccess() {
         cancelTimer();
-
+        success = true;
 
         updateSquirrelAttributes();
 
@@ -200,12 +201,11 @@ public class Vue_Quete_Vitesse extends AbstractQueteActivity implements OnMapRea
         QueteVitesse quete = getActiveQuest();
         builder.setMessage("Tu as réussi la quête dans le temps imparti ! Tu as gagné "+ quete.getRecompense() + " points de vitesse et " + quete.getNoisette() + " noisettes !")
                 .setTitle("Bravo !")
-                .setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                finish();
-            }
-        });
+                .setPositiveButton("Retour à la carte", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                    }
+                });
         AlertDialog dialog = builder.create();
         dialog.show();
     }
