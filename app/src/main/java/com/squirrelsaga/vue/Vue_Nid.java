@@ -43,7 +43,7 @@ public class Vue_Nid extends Fragment {
         Bienvenue_ecureuil.setText("Bienvenue dans le nid de " + Controleur.getEcureuil().getNom() + " !");
 
         nb_noisettes = (TextView) rootView.findViewById(R.id.nbNoisettes);
-        nb_noisettes.setText("Noisettes : " + Controleur.getEcureuil().getNbNoisettes());
+        nb_noisettes.setText(" " + Controleur.getEcureuil().getNbNoisettes());
 
         return rootView;
 
