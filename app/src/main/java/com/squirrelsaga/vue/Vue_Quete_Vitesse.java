@@ -70,10 +70,11 @@ public class Vue_Quete_Vitesse extends AbstractQueteActivity implements OnMapRea
      */
     private void setupLocationManager() {
         LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 2, new LocationListener() {
+        LocationListener locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
                 updatePlayerLocation(location);
+                Log.i("SSAGA", location.toString());
             }
 
             @Override
@@ -90,7 +91,9 @@ public class Vue_Quete_Vitesse extends AbstractQueteActivity implements OnMapRea
             public void onProviderDisabled(String provider) {
 
             }
-        });
+        };
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0,0, locationListener);
     }
 
 

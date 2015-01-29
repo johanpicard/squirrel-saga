@@ -8,6 +8,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.Log;
 
 /**
  * Service permettant de démarrer le GPS
@@ -20,7 +21,8 @@ public class LocationService extends Service implements LocationListener {
     public int onStartCommand(final Intent intent, final int flags, final int startId) {
         if (intent.getAction().equals("startListening")) {
             locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 2, this);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
         }
         else {
             if (intent.getAction().equals("stopListening")) {
@@ -41,7 +43,7 @@ public class LocationService extends Service implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
-
+        Log.i("SSAGA", location.toString());
     }
 
     @Override
